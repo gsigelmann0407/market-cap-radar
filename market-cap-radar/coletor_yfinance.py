@@ -1,8 +1,7 @@
 # ============================================================
-#  MARKET CAP RADAR — Coletor
+#  MARKET CAP RADAR — Coletor yfinance
 #  Scraping : companiesmarketcap.com  (top 500)
-#             → preço e variação % extraídos diretamente do HTML
-#  Setores  : yfinance — cache no Supabase, só busca tickers novos
+#  Dados    : yfinance (setor, preço, variação do dia)
 #  Destino  : Supabase tabela snapshots
 #  Uso      : python coletor_yfinance.py
 # ============================================================
@@ -69,11 +68,10 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-TOP_N              = 500
-PAGINAS            = 5      # ~100 empresas/página → 500 total
-WORKERS            = 10     # threads para buscas de setor
-DELAY              = 1.5    # segundos entre páginas (politeness)
-MARKET_CAP_MIN_USD = 50_000_000_000  # US$ 50 bilhões
+TOP_N   = 500
+PAGINAS = 5      # ~100 empresas/página → 500 total
+WORKERS = 10     # threads para buscas de setor
+DELAY   = 1.5    # segundos entre páginas (politeness)
 
 _UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -149,35 +147,15 @@ def _scrape_pagina(num: int) -> list[dict]:
             pais_el = row.select_one("span.responsive-hidden")
             pais = pais_el.get_text(strip=True) if pais_el else ""
 
-            # ── Preço (cells[4]) ──────────────────────────────
-            preco = None
-            if len(cells) > 4:
-                txt = cells[4].get_text(strip=True).replace("$", "").replace(",", "").strip()
-                try:
-                    preco = float(txt) if txt else None
-                except (ValueError, TypeError):
-                    pass
-
-            # ── Variação % do dia (cells[5], classe rh-sm) ───
-            variacao_dia_pct = None
-            if len(cells) > 5:
-                txt = cells[5].get_text(strip=True).replace("%", "").replace("+", "").strip()
-                try:
-                    variacao_dia_pct = float(txt) if txt else None
-                except (ValueError, TypeError):
-                    pass
-
             if not nome or not ticker:
                 continue
 
             empresas.append({
-                "nome":             nome,
-                "ticker":           ticker,
-                "market_cap_usd":   market_cap_usd,
-                "preco":            preco,
-                "variacao_dia_pct": variacao_dia_pct,
-                "pais":             pais,
-                "_rank_site":       rank,
+                "nome":           nome,
+                "ticker":         ticker,
+                "market_cap_usd": market_cap_usd,
+                "pais":           pais,
+                "_rank_site":     rank,
             })
 
         except Exception:
@@ -210,13 +188,12 @@ def scrape_top500() -> pd.DataFrame:
         .dropna(subset=["market_cap_usd"])
     )
 
-    # Re-rankeia por market cap e aplica filtro mínimo de US$ 50 bi
+    # Re-rankeia por market cap (o scraping pode ter gaps entre páginas)
     df = (
         df.sort_values("market_cap_usd", ascending=False)
         .reset_index(drop=True)
         .head(TOP_N)
     )
-    df = df[df["market_cap_usd"] >= MARKET_CAP_MIN_USD].reset_index(drop=True)
     df["rank"] = df.index + 1
     df = df.drop(columns=["_rank_site"], errors="ignore")
 
@@ -224,83 +201,72 @@ def scrape_top500() -> pd.DataFrame:
     return df
 
 
-# ── Setores — cache Supabase + yfinance só para novos ────────
+# ── Enriquecimento yfinance ──────────────────────────────────
 
-def _setores_existentes() -> dict:
-    """Retorna {ticker: setor} para todos os tickers que já têm setor salvo."""
-    url = (
-        f"{SUPABASE_URL}/rest/v1/snapshots"
-        f"?select=ticker,setor"
-        f"&setor=not.is.null"
-        f"&order=data.desc"
-        f"&limit=100000"
-    )
-    headers = {
-        "apikey":        SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Accept":        "application/json",
-    }
+def _setor_ticker(ticker: str) -> dict:
+    """Busca setor GICS para um único ticker via yfinance."""
     try:
-        resp = _sess.get(url, headers=headers, timeout=20)
-        if not resp.ok:
-            log.warning(f"Erro ao consultar setores: {resp.status_code}")
-            return {}
-        out: dict = {}
-        for row in resp.json():
-            t = row.get("ticker", "")
-            s = (row.get("setor") or "").strip()
-            if t and s and t not in out:   # ordem data.desc → pega o mais recente
-                out[t] = s
-        return out
-    except Exception as exc:
-        log.warning(f"Erro ao consultar setores existentes: {exc}")
-        return {}
+        info = yf.Ticker(ticker).info
+        setor = (
+            info.get("sector")
+            or info.get("sectorDisp")
+            or ""
+        )
+        return {"ticker": ticker, "setor": setor}
+    except Exception:
+        return {"ticker": ticker, "setor": ""}
 
 
-def _buscar_setor_yf(ticker: str) -> str:
-    """Busca setor via yfinance. Sem warmup. Retry uma vez com 1 s de delay."""
-    for attempt in range(2):
-        try:
-            info  = yf.Ticker(ticker).info
-            setor = info.get("sector") or info.get("sectorDisp") or ""
-            if setor:
-                return setor
-        except Exception:
-            pass
-        if attempt == 0:
-            time.sleep(1.0)
-    return ""
-
-
-def enriquecer_setores(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Preenche df['setor'] usando cache do Supabase.
-    Só chama yfinance para tickers que nunca tiveram setor salvo.
-    Chamadas sequenciais com 1 s entre cada requisição.
-    """
+def enriquecer_yfinance(df: pd.DataFrame) -> pd.DataFrame:
     tickers = df["ticker"].tolist()
 
-    log.info("Carregando setores existentes do Supabase...")
-    cache = _setores_existentes()
-    log.info(f"  {len(cache)} tickers com setor no cache.")
+    # ── 1. Preço e variação — download em lote ────────────────
+    log.info(f"Baixando preços (yfinance batch, {len(tickers)} tickers)...")
+    preco_map     = {}
+    variacao_map  = {}
+    try:
+        raw = yf.download(
+            tickers,
+            period="2d",
+            auto_adjust=True,
+            progress=False,
+            threads=True,
+        )
+        # Normaliza MultiIndex (múltiplos tickers) vs Index simples (1 ticker)
+        if isinstance(raw.columns, pd.MultiIndex):
+            close = raw["Close"]
+        else:
+            close = raw[["Close"]].rename(columns={"Close": tickers[0]})
 
-    tickers_novos = [t for t in tickers if not cache.get(t)]
-    log.info(f"  {len(tickers_novos)} tickers sem setor — buscando via yfinance...")
+        if not close.empty and len(close) >= 1:
+            preco_map = close.iloc[-1].dropna().to_dict()
+        if not close.empty and len(close) >= 2:
+            pct = close.pct_change().iloc[-1] * 100
+            variacao_map = pct.dropna().to_dict()
 
-    novos: dict = {}
-    for i, ticker in enumerate(tickers_novos, 1):
-        setor = _buscar_setor_yf(ticker)
-        novos[ticker] = setor
-        tag = setor if setor else "(nao encontrado)"
-        log.info(f"  [{i}/{len(tickers_novos)}] {ticker}: {tag}")
-        if i < len(tickers_novos):
-            time.sleep(1.0)
+        log.info(f"  Preços obtidos para {len(preco_map)} tickers.")
+    except Exception as exc:
+        log.warning(f"  Erro no download batch de preços: {exc}")
 
-    if tickers_novos:
-        encontrados = sum(1 for s in novos.values() if s)
-        log.info(f"  Setores novos: {encontrados}/{len(tickers_novos)} encontrados.")
+    # ── 2. Setor — chamadas individuais em paralelo ───────────
+    log.info(f"Buscando setores ({WORKERS} threads paralelas)...")
+    setor_map = {}
+    with ThreadPoolExecutor(max_workers=WORKERS) as ex:
+        futuros = {ex.submit(_setor_ticker, t): t for t in tickers}
+        done = 0
+        for fut in as_completed(futuros):
+            res = fut.result()
+            setor_map[res["ticker"]] = res["setor"]
+            done += 1
+            if done % 100 == 0:
+                log.info(f"  {done}/{len(tickers)} setores processados...")
+    log.info(f"  Setores preenchidos: {sum(1 for v in setor_map.values() if v)}/{len(tickers)}")
 
-    df["setor"] = df["ticker"].map({**cache, **novos}).fillna("")
+    # ── 3. Mescla ─────────────────────────────────────────────
+    df["preco"]            = df["ticker"].map(preco_map)
+    df["variacao_dia_pct"] = df["ticker"].map(variacao_map)
+    df["setor"]            = df["ticker"].map(setor_map)
+
     return df
 
 
@@ -361,139 +327,6 @@ def salvar_supabase(df: pd.DataFrame):
     log.info(f"Supabase: {total} registros salvos com sucesso.")
 
 
-# ── Histórico 2 anos ─────────────────────────────────────────
-#
-# Tabela necessária no Supabase (crie via SQL editor):
-#   CREATE TABLE historico_mercado (
-#     ticker         TEXT    NOT NULL,
-#     data           DATE    NOT NULL,
-#     preco          FLOAT,
-#     market_cap_usd FLOAT,
-#     PRIMARY KEY (ticker, data)
-#   );
-
-def _get_shares_outstanding(ticker: str) -> tuple[str, "float | None"]:
-    try:
-        info   = yf.Ticker(ticker).info
-        shares = info.get("sharesOutstanding") or info.get("impliedSharesOutstanding")
-        return ticker, float(shares) if shares else None
-    except Exception:
-        return ticker, None
-
-
-def _tickers_com_historico() -> set:
-    url = f"{SUPABASE_URL}/rest/v1/historico_mercado?select=ticker&limit=100000"
-    headers = {
-        "apikey":        SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Accept":        "application/json",
-    }
-    try:
-        resp = _sess.get(url, headers=headers, timeout=20)
-        if not resp.ok:
-            if resp.status_code == 404:
-                log.warning(
-                    "Tabela historico_mercado não existe. "
-                    "Crie-a no Supabase (SQL no cabeçalho deste arquivo)."
-                )
-            return set()
-        return {r["ticker"] for r in resp.json()}
-    except Exception as exc:
-        log.warning(f"Erro ao consultar historico_mercado: {exc}")
-        return set()
-
-
-def _salvar_historico_supabase(registros: list):
-    if not registros:
-        return
-    url = f"{SUPABASE_URL}/rest/v1/historico_mercado?on_conflict=ticker,data"
-    headers = {
-        "apikey":        SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type":  "application/json",
-        "Prefer":        "resolution=merge-duplicates",
-    }
-    total = 0
-    for i in range(0, len(registros), _LOTE_SIZE):
-        lote = registros[i : i + _LOTE_SIZE]
-        resp = _sess.post(url, json=lote, headers=headers)
-        if resp.status_code not in (200, 201):
-            log.error(f"Histórico Supabase erro {resp.status_code}: {resp.text[:300]}")
-            resp.raise_for_status()
-        total += len(lote)
-        if total % 2000 == 0:
-            log.info(f"  {total}/{len(registros)} registros históricos gravados...")
-    log.info(f"Histórico: {total} registros salvos no Supabase.")
-
-
-def puxar_e_salvar_historico(tickers: list):
-    """
-    Puxa 2 anos de preço/market-cap para tickers sem dados em historico_mercado.
-    Execução idempotente: tickers já presentes são ignorados.
-    Market cap ≈ preco × shares_outstanding (proxy com ações atuais).
-    """
-    log.info("Histórico 2 anos: verificando tickers pendentes...")
-    existentes = _tickers_com_historico()
-    pendentes  = [t for t in tickers if t not in existentes]
-
-    if not pendentes:
-        log.info("Histórico: todos os tickers já têm dados. Pulando.")
-        return
-
-    log.info(f"Histórico: {len(pendentes)} tickers sem dados. Iniciando coleta...")
-
-    # Shares outstanding em paralelo
-    log.info(f"  Buscando shares outstanding ({WORKERS} threads)...")
-    shares_map: dict = {}
-    with ThreadPoolExecutor(max_workers=WORKERS) as ex:
-        futuros = {ex.submit(_get_shares_outstanding, t): t for t in pendentes}
-        for fut in as_completed(futuros):
-            ticker, shares = fut.result()
-            if shares:
-                shares_map[ticker] = shares
-    log.info(f"  Shares obtidos: {len(shares_map)}/{len(pendentes)} tickers.")
-
-    # Download preços 2 anos em batch
-    log.info(f"  Baixando 2 anos de preços ({len(pendentes)} tickers em batch)...")
-    try:
-        raw = yf.download(
-            pendentes,
-            period="2y",
-            auto_adjust=True,
-            progress=False,
-            threads=True,
-        )
-        if isinstance(raw.columns, pd.MultiIndex):
-            close = raw["Close"]
-        else:
-            close = raw[["Close"]].rename(columns={"Close": pendentes[0]})
-        # Remove timezone para evitar problemas de serialização
-        if close.index.tz is not None:
-            close.index = close.index.tz_convert(None)
-    except Exception as exc:
-        log.error(f"  Erro ao baixar histórico de preços: {exc}")
-        return
-
-    # Monta registros
-    registros = []
-    for ticker in pendentes:
-        if ticker not in close.columns:
-            continue
-        shares = shares_map.get(ticker)
-        for dt, preco_val in close[ticker].dropna().items():
-            preco_f = float(preco_val)
-            mktcap  = round(preco_f * shares, 2) if shares else None
-            registros.append({
-                "ticker":         ticker,
-                "data":           dt.date().isoformat(),
-                "preco":          round(preco_f, 4),
-                "market_cap_usd": mktcap,
-            })
-
-    log.info(f"  {len(registros)} registros a salvar no Supabase...")
-    _salvar_historico_supabase(registros)
-
-
 # ── Main ─────────────────────────────────────────────────────
 
 def main():
@@ -507,9 +340,8 @@ def main():
             log.error("Scraping retornou 0 empresas. Verifique a estrutura HTML do site.")
             sys.exit(1)
 
-        df = enriquecer_setores(df)
+        df = enriquecer_yfinance(df)
         salvar_supabase(df)
-        puxar_e_salvar_historico(df["ticker"].tolist())
 
         log.info("=" * 55)
         log.info("  COLETA CONCLUIDA COM SUCESSO")

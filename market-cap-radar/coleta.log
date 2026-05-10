@@ -1,0 +1,1096 @@
+2026-05-10 14:11:18,081  INFO  =======================================================
+2026-05-10 14:11:18,081  INFO    COLETA INICIADA — 2026-05-10
+2026-05-10 14:11:18,082  INFO  =======================================================
+2026-05-10 14:11:18,082  INFO  Scraping companiesmarketcap.com — top 500...
+2026-05-10 14:11:18,083  INFO    Página 1/5 ...
+2026-05-10 14:11:18,784  INFO      0 empresas encontradas
+2026-05-10 14:11:20,285  INFO    Página 2/5 ...
+2026-05-10 14:11:20,713  INFO      0 empresas encontradas
+2026-05-10 14:11:22,214  INFO    Página 3/5 ...
+2026-05-10 14:11:22,639  INFO      0 empresas encontradas
+2026-05-10 14:11:24,140  INFO    Página 4/5 ...
+2026-05-10 14:11:24,553  INFO      0 empresas encontradas
+2026-05-10 14:11:26,055  INFO    Página 5/5 ...
+2026-05-10 14:11:26,466  INFO      0 empresas encontradas
+2026-05-10 14:11:26,467  ERROR  Scraping retornou 0 empresas. Verifique a estrutura HTML do site.
+2026-05-10 14:19:07,439  INFO  =======================================================
+2026-05-10 14:19:07,439  INFO    COLETA INICIADA — 2026-05-10
+2026-05-10 14:19:07,439  INFO  =======================================================
+2026-05-10 14:19:07,440  INFO  Scraping companiesmarketcap.com — top 500...
+2026-05-10 14:19:07,440  INFO    Página 1/5 ...
+2026-05-10 14:19:08,088  INFO      100 empresas encontradas
+2026-05-10 14:19:09,589  INFO    Página 2/5 ...
+2026-05-10 14:19:09,998  INFO      100 empresas encontradas
+2026-05-10 14:19:11,499  INFO    Página 3/5 ...
+2026-05-10 14:19:11,912  INFO      100 empresas encontradas
+2026-05-10 14:19:13,413  INFO    Página 4/5 ...
+2026-05-10 14:19:13,829  INFO      100 empresas encontradas
+2026-05-10 14:19:15,330  INFO    Página 5/5 ...
+2026-05-10 14:19:15,742  INFO      100 empresas encontradas
+2026-05-10 14:19:15,755  INFO  Scraping concluído: 500 empresas únicas.
+2026-05-10 14:19:15,755  INFO  Baixando preços (yfinance batch, 500 tickers)...
+2026-05-10 14:19:15,756  WARNING    Erro no download batch de preços: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2026-05-10 14:19:15,756  INFO  Buscando setores (10 threads paralelas)...
+2026-05-10 14:19:15,768  INFO    100/500 setores processados...
+2026-05-10 14:19:15,768  INFO    200/500 setores processados...
+2026-05-10 14:19:15,768  INFO    300/500 setores processados...
+2026-05-10 14:19:15,769  INFO    400/500 setores processados...
+2026-05-10 14:19:15,769  INFO    500/500 setores processados...
+2026-05-10 14:19:15,770  INFO    Setores preenchidos: 0/500
+2026-05-10 14:19:15,773  INFO  Salvando no Supabase...
+2026-05-10 14:19:16,839  INFO    200/500 registros gravados...
+2026-05-10 14:19:16,894  INFO    400/500 registros gravados...
+2026-05-10 14:19:16,930  INFO    500/500 registros gravados...
+2026-05-10 14:19:16,930  INFO  Supabase: 500 registros salvos com sucesso.
+2026-05-10 14:19:16,930  INFO  =======================================================
+2026-05-10 14:19:16,931  INFO    COLETA CONCLUIDA COM SUCESSO
+2026-05-10 14:19:16,931  INFO  =======================================================
+2026-05-10 14:21:55,878  INFO  =======================================================
+2026-05-10 14:21:55,878  INFO    COLETA INICIADA — 2026-05-10
+2026-05-10 14:21:55,878  INFO  =======================================================
+2026-05-10 14:21:55,879  INFO  Scraping companiesmarketcap.com — top 500...
+2026-05-10 14:21:55,879  INFO    Página 1/5 ...
+2026-05-10 14:21:56,523  INFO      100 empresas encontradas
+2026-05-10 14:21:58,024  INFO    Página 2/5 ...
+2026-05-10 14:21:58,437  INFO      100 empresas encontradas
+2026-05-10 14:21:59,938  INFO    Página 3/5 ...
+2026-05-10 14:22:00,362  INFO      100 empresas encontradas
+2026-05-10 14:22:01,863  INFO    Página 4/5 ...
+2026-05-10 14:22:02,288  INFO      100 empresas encontradas
+2026-05-10 14:22:03,789  INFO    Página 5/5 ...
+2026-05-10 14:22:04,209  INFO      100 empresas encontradas
+2026-05-10 14:22:04,216  INFO  Scraping concluído: 500 empresas únicas.
+2026-05-10 14:22:04,217  INFO  Baixando preços (yfinance batch, 500 tickers)...
+2026-05-10 14:22:04,654  ERROR  Failed to get ticker '300750.SZ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:05,007  ERROR  Failed to get ticker 'MAR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:05,357  ERROR  Failed to get ticker 'KBCSF' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:05,731  ERROR  Failed to get ticker '002371.SZ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:21,113  ERROR  Failed to get ticker 'PLD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:21,460  ERROR  Failed to get ticker 'CARR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:21,809  ERROR  Failed to get ticker 'TEL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:51,821  ERROR  Failed to get ticker 'CB' reason: Failed to perform, curl: (28) Connection timed out after 30009 milliseconds. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:52,170  ERROR  Failed to get ticker 'KLAC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:52,519  ERROR  Failed to get ticker '601328.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:52,887  ERROR  Failed to get ticker 'KEYS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:53,235  ERROR  Failed to get ticker 'PBR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:53,583  ERROR  Failed to get ticker 'SNOW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:53,932  ERROR  Failed to get ticker 'OXY' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:54,292  ERROR  Failed to get ticker 'JPM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:54,641  ERROR  Failed to get ticker '0728.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:54,996  ERROR  Failed to get ticker 'TMO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:55,353  ERROR  Failed to get ticker 'CM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:55,704  ERROR  Failed to get ticker 'ADNOCGAS.AE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:56,067  ERROR  Failed to get ticker 'ABNB' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:22:57,110  ERROR  $KBCSF: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:22:57,458  ERROR  $002371.SZ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:22:57,806  ERROR  $PLD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:22:58,156  ERROR  $CARR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:22:58,505  ERROR  $TEL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:22:58,850  ERROR  $CB: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:22:59,196  ERROR  $KLAC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:22:59,544  ERROR  $601328.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:22:59,896  ERROR  $KEYS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:00,244  ERROR  $PBR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:15,607  ERROR  $SNOW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:16,042  ERROR  $OXY: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:16,392  ERROR  $JPM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:16,738  ERROR  $0728.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:17,085  ERROR  $TMO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:17,434  ERROR  $CM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:17,781  ERROR  $ADNOCGAS.AE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:18,130  ERROR  $ABNB: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:18,269  ERROR  Failed to get ticker 'SNDK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,297  ERROR  Failed to get ticker 'ORCL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,325  ERROR  Failed to get ticker 'NTES' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,353  ERROR  Failed to get ticker 'CL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,387  ERROR  Failed to get ticker 'B' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,415  ERROR  Failed to get ticker 'ABBN.SW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,444  ERROR  Failed to get ticker 'CRM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,471  ERROR  Failed to get ticker 'TSM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,499  ERROR  Failed to get ticker 'MA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,538  ERROR  Failed to get ticker 'LRCX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,568  ERROR  Failed to get ticker 'BHARTIARTL.NS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,596  ERROR  Failed to get ticker 'GEV' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,624  ERROR  Failed to get ticker '300476.SZ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,653  ERROR  Failed to get ticker 'CEG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,705  ERROR  Failed to get ticker '002475.SZ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,749  ERROR  Failed to get ticker 'SBER.ME' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,778  ERROR  Failed to get ticker '6146.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,825  ERROR  Failed to get ticker 'MCK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,854  ERROR  Failed to get ticker 'NESN.SW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,883  ERROR  Failed to get ticker 'INTC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:18,909  ERROR  $SNDK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:18,936  ERROR  $ORCL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:18,963  ERROR  $NTES: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:18,992  ERROR  $CL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,022  ERROR  $B: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,049  ERROR  $ABBN.SW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,078  ERROR  $CRM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,106  ERROR  $TSM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,134  ERROR  $MA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,161  ERROR  $LRCX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,188  ERROR  $BHARTIARTL.NS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,227  ERROR  $GEV: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,255  ERROR  $300476.SZ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,289  ERROR  $CEG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,316  ERROR  $002475.SZ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,344  ERROR  $SBER.ME: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,372  ERROR  $6146.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,400  ERROR  $MCK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,430  ERROR  $NESN.SW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,459  ERROR  $INTC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:19,488  ERROR  Failed to get ticker 'CME' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,516  ERROR  Failed to get ticker 'NSC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,544  ERROR  Failed to get ticker 'MBG.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,572  ERROR  Failed to get ticker 'UBS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,601  ERROR  Failed to get ticker 'DIS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,629  ERROR  Failed to get ticker 'MPC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,657  ERROR  Failed to get ticker 'VALE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,690  ERROR  Failed to get ticker 'ITX.MC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,718  ERROR  Failed to get ticker 'TDG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,758  ERROR  Failed to get ticker 'ANET' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,786  ERROR  Failed to get ticker 'CVX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,813  ERROR  Failed to get ticker 'VZ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,844  ERROR  Failed to get ticker '285A.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,872  ERROR  Failed to get ticker '5803.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,901  ERROR  Failed to get ticker 'LOW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,929  ERROR  Failed to get ticker 'COF' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,957  ERROR  Failed to get ticker 'ALL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:19,986  ERROR  Failed to get ticker 'NA.TO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:20,013  ERROR  Failed to get ticker 'SAP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:20,046  ERROR  Failed to get ticker 'ATD.TO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:20,071  ERROR  $CME: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,099  ERROR  $NSC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,127  ERROR  $MBG.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,156  ERROR  $UBS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,183  ERROR  $DIS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,211  ERROR  $MPC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,251  ERROR  $VALE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,279  ERROR  $ITX.MC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,309  ERROR  $TDG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,350  ERROR  $ANET: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,396  ERROR  $CVX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,424  ERROR  $VZ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,452  ERROR  $285A.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,479  ERROR  $5803.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,505  ERROR  $LOW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,532  ERROR  $COF: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,567  ERROR  $ALL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,593  ERROR  $NA.TO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,619  ERROR  $SAP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,667  ERROR  $ATD.TO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:20,711  ERROR  Failed to get ticker 'IBN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:20,741  ERROR  Failed to get ticker 'CBA.AX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:20,770  ERROR  Failed to get ticker 'APH' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:20,813  ERROR  Failed to get ticker 'CTAS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:20,845  ERROR  Failed to get ticker 'G.MI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:20,873  ERROR  Failed to get ticker 'EQIX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:20,912  ERROR  Failed to get ticker '0981.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:20,941  ERROR  Failed to get ticker 'CFR.SW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:20,969  ERROR  Failed to get ticker 'HD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:20,996  ERROR  Failed to get ticker 'WES.AX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:21,025  ERROR  Failed to get ticker 'ETR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:21,061  ERROR  Failed to get ticker 'NDA-FI.HE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:21,091  ERROR  Failed to get ticker 'UNP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:21,119  ERROR  Failed to get ticker '2222.SR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:21,149  ERROR  Failed to get ticker 'AMZN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:21,179  ERROR  Failed to get ticker 'BK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:21,210  ERROR  Failed to get ticker 'L.TO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:21,258  ERROR  Failed to get ticker 'TXN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:21,288  ERROR  Failed to get ticker 'CDNS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:21,316  ERROR  Failed to get ticker 'UL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:21,342  ERROR  $IBN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,384  ERROR  $CBA.AX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,412  ERROR  $APH: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,463  ERROR  $CTAS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,491  ERROR  $G.MI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,540  ERROR  $EQIX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,594  ERROR  $0981.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,624  ERROR  $CFR.SW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,652  ERROR  $HD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,677  ERROR  $WES.AX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,704  ERROR  $ETR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,732  ERROR  $NDA-FI.HE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,759  ERROR  $UNP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,786  ERROR  $2222.SR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,813  ERROR  $AMZN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,859  ERROR  $BK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,886  ERROR  $L.TO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,939  ERROR  $TXN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,967  ERROR  $CDNS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:21,999  ERROR  $UL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:22,031  ERROR  Failed to get ticker 'SBUX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,059  ERROR  Failed to get ticker '600900.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,087  ERROR  Failed to get ticker '688256.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,116  ERROR  Failed to get ticker 'TRGP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,151  ERROR  Failed to get ticker 'PDD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,183  ERROR  Failed to get ticker 'TTE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,214  ERROR  Failed to get ticker 'SLB' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,244  ERROR  Failed to get ticker 'MRK.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,287  ERROR  Failed to get ticker 'DB' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,317  ERROR  Failed to get ticker 'MFG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,344  ERROR  Failed to get ticker 'CS.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,371  ERROR  Failed to get ticker 'CTVA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,400  ERROR  Failed to get ticker 'BA.L' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,431  ERROR  Failed to get ticker 'KMI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,461  ERROR  Failed to get ticker 'EOG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,490  ERROR  Failed to get ticker 'WMMVF' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,540  ERROR  Failed to get ticker 'ARM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,586  ERROR  Failed to get ticker 'SPGI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,617  ERROR  Failed to get ticker 'RIO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,647  ERROR  Failed to get ticker 'DELTA.BK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:22,673  ERROR  $SBUX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:22,700  ERROR  $600900.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:22,726  ERROR  $688256.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:22,773  ERROR  $TRGP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:22,800  ERROR  $PDD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:22,828  ERROR  $TTE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:22,855  ERROR  $SLB: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:22,882  ERROR  $MRK.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:22,926  ERROR  $DB: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:22,953  ERROR  $MFG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:22,983  ERROR  $CS.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,009  ERROR  $CTVA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,036  ERROR  $BA.L: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,063  ERROR  $KMI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,091  ERROR  $EOG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,116  ERROR  $WMMVF: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,145  ERROR  $ARM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,173  ERROR  $SPGI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,200  ERROR  $RIO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,227  ERROR  $DELTA.BK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,256  ERROR  Failed to get ticker '601658.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,284  ERROR  Failed to get ticker 'FIX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,314  ERROR  Failed to get ticker 'ETN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,343  ERROR  Failed to get ticker 'MCHP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,372  ERROR  Failed to get ticker 'HDB' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,399  ERROR  Failed to get ticker 'EMIRATESNBD.AE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,428  ERROR  Failed to get ticker 'PCAR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,478  ERROR  Failed to get ticker 'BMW.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,523  ERROR  Failed to get ticker '000660.KS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,552  ERROR  Failed to get ticker 'LHX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,581  ERROR  Failed to get ticker 'CRH' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,609  ERROR  Failed to get ticker 'TER' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,637  ERROR  Failed to get ticker 'CDI.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,665  ERROR  Failed to get ticker 'C' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,694  ERROR  Failed to get ticker 'CRWV' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,722  ERROR  Failed to get ticker '300308.SZ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,750  ERROR  Failed to get ticker 'WMT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,789  ERROR  Failed to get ticker 'NOW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,817  ERROR  Failed to get ticker 'AMGN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,845  ERROR  Failed to get ticker 'SONY' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:23,872  ERROR  $601658.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,898  ERROR  $FIX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,925  ERROR  $ETN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,953  ERROR  $MCHP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:23,979  ERROR  $HDB: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,006  ERROR  $EMIRATESNBD.AE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,058  ERROR  $PCAR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,086  ERROR  $BMW.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,115  ERROR  $000660.KS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,154  ERROR  $LHX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,184  ERROR  $CRH: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,223  ERROR  $TER: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,249  ERROR  $CDI.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,290  ERROR  $C: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,318  ERROR  $CRWV: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,347  ERROR  $300308.SZ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,377  ERROR  $WMT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,418  ERROR  $NOW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,445  ERROR  $AMGN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,471  ERROR  $SONY: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:24,499  ERROR  Failed to get ticker 'MUFG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,527  ERROR  Failed to get ticker '1299.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,556  ERROR  Failed to get ticker 'RSG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,599  ERROR  Failed to get ticker '601988.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,626  ERROR  Failed to get ticker 'AEP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,657  ERROR  Failed to get ticker 'COP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,685  ERROR  Failed to get ticker '1211.SR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,714  ERROR  Failed to get ticker 'REGN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,743  ERROR  Failed to get ticker 'DUK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,775  ERROR  Failed to get ticker '0941.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,805  ERROR  Failed to get ticker 'ITW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,847  ERROR  Failed to get ticker 'BSX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,876  ERROR  Failed to get ticker 'RELX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,905  ERROR  Failed to get ticker '005930.KS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,934  ERROR  Failed to get ticker '1398.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,961  ERROR  Failed to get ticker 'LICI.NS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:24,992  ERROR  Failed to get ticker 'ADI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,022  ERROR  Failed to get ticker 'GLCNF' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,052  ERROR  Failed to get ticker 'TRP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,080  ERROR  Failed to get ticker 'INFY' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,109  ERROR  $MUFG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,138  ERROR  $1299.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,166  ERROR  $RSG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,194  ERROR  $601988.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,221  ERROR  $AEP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,249  ERROR  $COP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,278  ERROR  $1211.SR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,304  ERROR  $REGN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,352  ERROR  $DUK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,379  ERROR  $0941.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,407  ERROR  $ITW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,445  ERROR  $BSX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,473  ERROR  $RELX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,500  ERROR  $005930.KS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,528  ERROR  $1398.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,553  ERROR  $LICI.NS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,580  ERROR  $ADI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,611  ERROR  $GLCNF: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,640  ERROR  $TRP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,667  ERROR  $INFY: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:25,696  ERROR  Failed to get ticker '601998.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,738  ERROR  Failed to get ticker 'MRK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,768  ERROR  Failed to get ticker 'EMR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,796  ERROR  Failed to get ticker 'TGT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,825  ERROR  Failed to get ticker 'PEP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,854  ERROR  Failed to get ticker 'UCG.MI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,881  ERROR  Failed to get ticker 'NKE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,934  ERROR  Failed to get ticker 'TCEHY' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,963  ERROR  Failed to get ticker 'MQG.AX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:25,993  ERROR  Failed to get ticker 'UI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:26,022  ERROR  Failed to get ticker 'AI.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:26,052  ERROR  Failed to get ticker '8031.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:26,090  ERROR  Failed to get ticker 'AFL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:26,139  ERROR  Failed to get ticker '5802.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:26,168  ERROR  Failed to get ticker '601088.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:26,210  ERROR  Failed to get ticker 'GE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:26,239  ERROR  Failed to get ticker '8053.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:26,301  ERROR  Failed to get ticker '3968.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:26,330  ERROR  Failed to get ticker 'AMAT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:26,358  ERROR  Failed to get ticker 'PSX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:26,385  ERROR  $601998.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,436  ERROR  $MRK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,465  ERROR  $EMR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,494  ERROR  $TGT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,520  ERROR  $PEP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,546  ERROR  $UCG.MI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,575  ERROR  $NKE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,622  ERROR  $TCEHY: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,649  ERROR  $MQG.AX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,679  ERROR  $UI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,706  ERROR  $AI.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,733  ERROR  $8031.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,762  ERROR  $AFL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,789  ERROR  $5802.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,816  ERROR  $601088.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,867  ERROR  $GE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,897  ERROR  $8053.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,925  ERROR  $3968.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,952  ERROR  $AMAT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:26,979  ERROR  $PSX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:27,007  ERROR  Failed to get ticker 'ORA.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,034  ERROR  Failed to get ticker 'RMS.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,062  ERROR  Failed to get ticker 'COR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,103  ERROR  Failed to get ticker 'CVE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,131  ERROR  Failed to get ticker 'PANW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,160  ERROR  Failed to get ticker 'NUE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,188  ERROR  Failed to get ticker '600028.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,217  ERROR  Failed to get ticker 'IHC.AE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,245  ERROR  Failed to get ticker 'MSFT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,277  ERROR  Failed to get ticker 'RR.L' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,308  ERROR  Failed to get ticker 'AJG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,352  ERROR  Failed to get ticker 'ROSN.ME' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,380  ERROR  Failed to get ticker '3690.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,408  ERROR  Failed to get ticker 'TAQA.AE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,461  ERROR  Failed to get ticker 'ASX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,491  ERROR  Failed to get ticker 'ISRG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,520  ERROR  Failed to get ticker 'O' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,563  ERROR  Failed to get ticker 'JCI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,591  ERROR  Failed to get ticker '0883.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,621  ERROR  Failed to get ticker 'DTE.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:27,647  ERROR  $ORA.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:27,674  ERROR  $RMS.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:27,701  ERROR  $COR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:27,751  ERROR  $CVE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:27,778  ERROR  $PANW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:27,806  ERROR  $NUE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:27,853  ERROR  $600028.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:27,880  ERROR  $IHC.AE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:27,907  ERROR  $MSFT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:27,947  ERROR  $RR.L: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:27,973  ERROR  $AJG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:28,000  ERROR  $ROSN.ME: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:28,029  ERROR  $3690.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:28,056  ERROR  $TAQA.AE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:28,102  ERROR  $ASX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:28,130  ERROR  $ISRG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:28,157  ERROR  $O: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:28,186  ERROR  $JCI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:28,214  ERROR  $0883.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:28,241  ERROR  $DTE.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:28,279  ERROR  Failed to get ticker 'EL.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,323  ERROR  Failed to get ticker 'ISP.MI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,353  ERROR  Failed to get ticker 'ASML' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,382  ERROR  Failed to get ticker '601899.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,409  ERROR  Failed to get ticker 'AZO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,438  ERROR  Failed to get ticker 'ICE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,466  ERROR  Failed to get ticker 'KO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,507  ERROR  Failed to get ticker 'AMX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,536  ERROR  Failed to get ticker '9432.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,587  ERROR  Failed to get ticker 'SE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,616  ERROR  Failed to get ticker '3993.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,643  ERROR  Failed to get ticker 'DELL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,672  ERROR  Failed to get ticker 'RY' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,701  ERROR  Failed to get ticker '0857.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,750  ERROR  Failed to get ticker 'SCCO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,779  ERROR  Failed to get ticker '9633.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,808  ERROR  Failed to get ticker 'UPS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,853  ERROR  Failed to get ticker '6981.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,881  ERROR  Failed to get ticker 'PSA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,909  ERROR  Failed to get ticker 'ITUB' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:43,936  ERROR  $EL.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:43,963  ERROR  $ISP.MI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:43,989  ERROR  $ASML: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,016  ERROR  $601899.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,043  ERROR  $AZO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,091  ERROR  $ICE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,133  ERROR  $KO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,160  ERROR  $AMX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,212  ERROR  $9432.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,238  ERROR  $SE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,265  ERROR  $3993.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,291  ERROR  $DELL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,317  ERROR  $RY: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,344  ERROR  $0857.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,371  ERROR  $SCCO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,398  ERROR  $9633.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,424  ERROR  $UPS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:44,451  ERROR  $6981.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:59,491  ERROR  $PSA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:59,520  ERROR  $ITUB: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:23:59,553  ERROR  Failed to get ticker 'BABA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:59,585  ERROR  Failed to get ticker 'ENB' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:59,615  ERROR  Failed to get ticker 'SHOP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:59,646  ERROR  Failed to get ticker 'HOLN.SW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:59,680  ERROR  Failed to get ticker 'AAL.L' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:59,711  ERROR  Failed to get ticker 'XIACF' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:59,759  ERROR  Failed to get ticker 'RHM.F' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:59,790  ERROR  Failed to get ticker 'WM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:59,819  ERROR  Failed to get ticker 'MO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:59,850  ERROR  Failed to get ticker 'FER.MC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:59,882  ERROR  Failed to get ticker 'E' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:59,912  ERROR  Failed to get ticker '2454.TW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:23:59,944  ERROR  Failed to get ticker 'UNH' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:14,984  ERROR  Failed to get ticker 'NOK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,012  ERROR  Failed to get ticker 'GM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,041  ERROR  Failed to get ticker 'BPAC3.SA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,068  ERROR  Failed to get ticker 'AMT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,096  ERROR  Failed to get ticker '2914.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,123  ERROR  Failed to get ticker '601318.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,151  ERROR  Failed to get ticker 'MFC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,178  ERROR  $BABA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,204  ERROR  $ENB: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,230  ERROR  $SHOP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,258  ERROR  $HOLN.SW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,284  ERROR  $AAL.L: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,312  ERROR  $XIACF: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,338  ERROR  $RHM.F: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,365  ERROR  $WM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,392  ERROR  $MO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,420  ERROR  $FER.MC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,446  ERROR  $E: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,473  ERROR  $2454.TW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,499  ERROR  $UNH: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,526  ERROR  $NOK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,553  ERROR  $GM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,580  ERROR  $BPAC3.SA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,606  ERROR  $AMT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,631  ERROR  $2914.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,657  ERROR  $601318.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,682  ERROR  $MFC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:15,710  ERROR  Failed to get ticker 'MC.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,739  ERROR  Failed to get ticker 'BCS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,768  ERROR  Failed to get ticker 'AIR.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,796  ERROR  Failed to get ticker 'WDC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,824  ERROR  Failed to get ticker 'TFC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,852  ERROR  Failed to get ticker 'ING' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,880  ERROR  Failed to get ticker 'GLW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,909  ERROR  Failed to get ticker '002594.SZ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,937  ERROR  Failed to get ticker 'GOOG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,965  ERROR  Failed to get ticker '6098.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:15,994  ERROR  Failed to get ticker 'CVNA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,022  ERROR  Failed to get ticker 'MCO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,051  ERROR  Failed to get ticker 'WBC.AX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,079  ERROR  Failed to get ticker '601288.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,107  ERROR  Failed to get ticker '000333.SZ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,135  ERROR  Failed to get ticker 'SNPS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,163  ERROR  Failed to get ticker 'LITE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,190  ERROR  Failed to get ticker 'RTX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,217  ERROR  Failed to get ticker 'CCJ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,245  ERROR  Failed to get ticker '600030.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,272  ERROR  $MC.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,299  ERROR  $BCS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,326  ERROR  $AIR.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,353  ERROR  $WDC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,380  ERROR  $TFC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,406  ERROR  $ING: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,432  ERROR  $GLW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,458  ERROR  $002594.SZ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,485  ERROR  $GOOG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,512  ERROR  $6098.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,540  ERROR  $CVNA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,565  ERROR  $MCO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,593  ERROR  $WBC.AX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,622  ERROR  $601288.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,652  ERROR  $000333.SZ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,683  ERROR  $SNPS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,711  ERROR  $LITE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,739  ERROR  $RTX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,766  ERROR  $CCJ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,793  ERROR  $600030.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:16,822  ERROR  Failed to get ticker 'CRWD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,851  ERROR  Failed to get ticker 'TJX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,901  ERROR  Failed to get ticker 'DB1.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,931  ERROR  Failed to get ticker '601939.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:16,977  ERROR  Failed to get ticker 'BAM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:17,005  ERROR  Failed to get ticker 'ORLY' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:17,036  ERROR  Failed to get ticker 'AU' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:17,086  ERROR  Failed to get ticker '402340.KS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:17,133  ERROR  Failed to get ticker 'ATCO-B.ST' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:17,161  ERROR  Failed to get ticker 'BAC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:17,189  ERROR  Failed to get ticker 'NET' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:17,218  ERROR  Failed to get ticker 'FTNT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:32,257  ERROR  Failed to get ticker '600519.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:32,330  ERROR  Failed to get ticker 'PNC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:32,358  ERROR  Failed to get ticker '005380.KS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:32,387  ERROR  Failed to get ticker 'T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:32,415  ERROR  Failed to get ticker 'ROST' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:32,444  ERROR  Failed to get ticker 'BBVA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:32,472  ERROR  Failed to get ticker 'WMB' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:32,500  ERROR  Failed to get ticker '9434.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:32,526  ERROR  $CRWD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,554  ERROR  $TJX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,601  ERROR  $DB1.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,627  ERROR  $601939.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,654  ERROR  $BAM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,679  ERROR  $ORLY: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,705  ERROR  $AU: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,731  ERROR  $402340.KS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,762  ERROR  $ATCO-B.ST: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,791  ERROR  $BAC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,817  ERROR  $NET: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,844  ERROR  $FTNT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,871  ERROR  $600519.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,913  ERROR  $PNC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,939  ERROR  $005380.KS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,966  ERROR  $T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:32,993  ERROR  $ROST: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:33,020  ERROR  $BBVA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:33,046  ERROR  $WMB: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:33,073  ERROR  $9434.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:33,102  ERROR  Failed to get ticker 'INTU' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:33,129  ERROR  Failed to get ticker '6857.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:33,157  ERROR  Failed to get ticker 'LYG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:33,184  ERROR  Failed to get ticker 'PH' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:33,212  ERROR  Failed to get ticker 'UCB.VI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:33,240  ERROR  Failed to get ticker 'HSBC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:33,268  ERROR  Failed to get ticker '2308.TW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:33,297  ERROR  Failed to get ticker 'TSLA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:33,325  ERROR  Failed to get ticker 'BN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:48,369  ERROR  Failed to get ticker '8766.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:48,401  ERROR  Failed to get ticker 'PG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:48,428  ERROR  Failed to get ticker 'GS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:48,456  ERROR  Failed to get ticker 'ECL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:48,485  ERROR  Failed to get ticker 'ELV' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:48,511  ERROR  Failed to get ticker 'BX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:48,538  ERROR  Failed to get ticker 'MMM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:48,567  ERROR  Failed to get ticker 'BMO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:48,593  ERROR  Failed to get ticker 'TM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:48,622  ERROR  Failed to get ticker 'ANTO.L' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:48,649  ERROR  Failed to get ticker 'DHR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:48,675  ERROR  $INTU: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:48,701  ERROR  $6857.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:48,728  ERROR  $LYG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:48,754  ERROR  $PH: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:48,780  ERROR  $UCB.VI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:48,807  ERROR  $HSBC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:48,833  ERROR  $2308.TW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:48,860  ERROR  $TSLA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:48,886  ERROR  $BN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:48,913  ERROR  $8766.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:48,939  ERROR  $PG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:48,965  ERROR  $GS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:48,992  ERROR  $ECL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,018  ERROR  $ELV: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,045  ERROR  $BX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,071  ERROR  $MMM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,098  ERROR  $BMO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,125  ERROR  $TM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,152  ERROR  $ANTO.L: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,181  ERROR  $DHR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,208  ERROR  Failed to get ticker '8002.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,236  ERROR  Failed to get ticker 'COIN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,263  ERROR  Failed to get ticker 'VOW3.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,291  ERROR  Failed to get ticker 'SMFG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,319  ERROR  Failed to get ticker 'SNY' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,348  ERROR  Failed to get ticker 'ET' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,375  ERROR  Failed to get ticker 'BKR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,414  ERROR  Failed to get ticker 'BE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,461  ERROR  Failed to get ticker 'OKE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,489  ERROR  Failed to get ticker 'TD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,517  ERROR  Failed to get ticker 'TAK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,546  ERROR  Failed to get ticker '8035.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,574  ERROR  Failed to get ticker 'ALV.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,602  ERROR  Failed to get ticker 'MUV2.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,629  ERROR  Failed to get ticker 'USB' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,657  ERROR  Failed to get ticker 'FAST' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,685  ERROR  Failed to get ticker 'BAS.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,712  ERROR  Failed to get ticker 'MCD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,739  ERROR  Failed to get ticker 'AZN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,766  ERROR  Failed to get ticker 'SCHW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:49,793  ERROR  $8002.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,820  ERROR  $COIN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,846  ERROR  $VOW3.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,874  ERROR  $SMFG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,915  ERROR  $SNY: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,941  ERROR  $ET: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,968  ERROR  $BKR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:49,995  ERROR  $BE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,021  ERROR  $OKE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,047  ERROR  $TD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,074  ERROR  $TAK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,101  ERROR  $8035.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,128  ERROR  $ALV.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,155  ERROR  $MUV2.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,182  ERROR  $USB: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,208  ERROR  $FAST: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,236  ERROR  $BAS.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,261  ERROR  $MCD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,288  ERROR  $AZN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,315  ERROR  $SCHW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,343  ERROR  Failed to get ticker '7974.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,371  ERROR  Failed to get ticker 'BNS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,400  ERROR  Failed to get ticker 'DSV.VI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,428  ERROR  Failed to get ticker '2359.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,456  ERROR  Failed to get ticker 'LLY' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,484  ERROR  Failed to get ticker '9983.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,513  ERROR  Failed to get ticker 'AMD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,540  ERROR  Failed to get ticker 'ACA.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,569  ERROR  Failed to get ticker 'PFE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,597  ERROR  Failed to get ticker 'ENGI.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,626  ERROR  Failed to get ticker '2388.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,653  ERROR  Failed to get ticker 'IBE.MC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,682  ERROR  Failed to get ticker 'FANG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,710  ERROR  Failed to get ticker '601138.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,739  ERROR  Failed to get ticker 'HINDUNILVR.NS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,766  ERROR  Failed to get ticker 'HCA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,806  ERROR  Failed to get ticker 'TRV' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,838  ERROR  Failed to get ticker 'DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,867  ERROR  Failed to get ticker 'BMY' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,896  ERROR  Failed to get ticker 'TCS.NS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:50,922  ERROR  $7974.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,948  ERROR  $BNS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:50,975  ERROR  $DSV.VI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,001  ERROR  $2359.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,030  ERROR  $LLY: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,057  ERROR  $9983.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,084  ERROR  $AMD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,111  ERROR  $ACA.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,137  ERROR  $PFE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,163  ERROR  $ENGI.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,190  ERROR  $2388.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,218  ERROR  $IBE.MC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,245  ERROR  $FANG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,272  ERROR  $601138.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,299  ERROR  $HINDUNILVR.NS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,325  ERROR  $HCA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,350  ERROR  $TRV: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,377  ERROR  $DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,404  ERROR  $BMY: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,444  ERROR  $TCS.NS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:51,472  ERROR  Failed to get ticker 'TMUS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,502  ERROR  Failed to get ticker 'V' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,530  ERROR  Failed to get ticker 'RCL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,570  ERROR  Failed to get ticker 'BAJFINANCE.NS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,598  ERROR  Failed to get ticker '1180.SR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,625  ERROR  Failed to get ticker 'BHP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,653  ERROR  Failed to get ticker 'NVDA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,681  ERROR  Failed to get ticker 'D05.SI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,710  ERROR  Failed to get ticker 'CVS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,739  ERROR  Failed to get ticker 'ADBE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,766  ERROR  Failed to get ticker 'NOC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,795  ERROR  Failed to get ticker 'AXP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,822  ERROR  Failed to get ticker 'ABT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,850  ERROR  Failed to get ticker 'DHL.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,899  ERROR  Failed to get ticker 'VLO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,926  ERROR  Failed to get ticker 'MRSH' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,955  ERROR  Failed to get ticker 'APD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:51,982  ERROR  Failed to get ticker 'CAT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,011  ERROR  Failed to get ticker 'RO.SW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,039  ERROR  Failed to get ticker 'MSTR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,065  ERROR  $TMUS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,092  ERROR  $V: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,119  ERROR  $RCL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,146  ERROR  $BAJFINANCE.NS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,173  ERROR  $1180.SR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,198  ERROR  $BHP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,224  ERROR  $NVDA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,249  ERROR  $D05.SI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,370  ERROR  $CVS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,403  ERROR  $ADBE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,430  ERROR  $NOC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,456  ERROR  $AXP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,483  ERROR  $ABT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,509  ERROR  $DHL.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,536  ERROR  $VLO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,564  ERROR  $MRSH: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,590  ERROR  $APD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,617  ERROR  $CAT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,642  ERROR  $RO.SW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,668  ERROR  $MSTR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:52,699  ERROR  Failed to get ticker '8058.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,727  ERROR  Failed to get ticker 'CABK.MC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,756  ERROR  Failed to get ticker '300502.SZ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,784  ERROR  Failed to get ticker 'DG.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,811  ERROR  Failed to get ticker 'MSI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,840  ERROR  Failed to get ticker 'SIE.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,868  ERROR  Failed to get ticker 'MPLX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,897  ERROR  Failed to get ticker 'BP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,925  ERROR  Failed to get ticker 'SU.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,953  ERROR  Failed to get ticker 'NGG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:52,983  ERROR  Failed to get ticker 'APP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,011  ERROR  Failed to get ticker 'SO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,040  ERROR  Failed to get ticker 'MS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,068  ERROR  Failed to get ticker '1120.SR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,096  ERROR  Failed to get ticker 'NWG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,125  ERROR  Failed to get ticker 'AVGO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,154  ERROR  Failed to get ticker '9984.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,183  ERROR  Failed to get ticker 'PM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,211  ERROR  Failed to get ticker 'SRE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,239  ERROR  Failed to get ticker 'VRT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,264  ERROR  $8058.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,291  ERROR  $CABK.MC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,318  ERROR  $300502.SZ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,344  ERROR  $DG.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,370  ERROR  $MSI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,397  ERROR  $SIE.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,424  ERROR  $MPLX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,451  ERROR  $BP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,479  ERROR  $SU.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,506  ERROR  $NGG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,532  ERROR  $APP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,558  ERROR  $SO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,587  ERROR  $MS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,613  ERROR  $1120.SR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,641  ERROR  $NWG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,666  ERROR  $AVGO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,693  ERROR  $9984.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,720  ERROR  $PM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,748  ERROR  $SRE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,774  ERROR  $VRT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:53,802  ERROR  Failed to get ticker 'SPG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,831  ERROR  Failed to get ticker 'NFLX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,858  ERROR  Failed to get ticker '0388.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,885  ERROR  Failed to get ticker 'EOAN.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,912  ERROR  Failed to get ticker 'AAPL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,940  ERROR  Failed to get ticker 'BTI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,967  ERROR  Failed to get ticker 'JNJ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:53,995  ERROR  Failed to get ticker 'MU' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,037  ERROR  Failed to get ticker 'TT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,066  ERROR  Failed to get ticker 'HON' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,095  ERROR  Failed to get ticker 'RACE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,123  ERROR  Failed to get ticker 'CP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,151  ERROR  Failed to get ticker 'PRY.MI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,179  ERROR  Failed to get ticker 'SAN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,208  ERROR  Failed to get ticker 'STX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,235  ERROR  Failed to get ticker 'VIC.VN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,264  ERROR  Failed to get ticker 'IBKR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,291  ERROR  Failed to get ticker '7741.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,319  ERROR  Failed to get ticker '6501.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,348  ERROR  Failed to get ticker 'ZURN.SW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,374  ERROR  $SPG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,414  ERROR  $NFLX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,440  ERROR  $0388.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,467  ERROR  $EOAN.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,494  ERROR  $AAPL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,520  ERROR  $BTI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,547  ERROR  $JNJ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,574  ERROR  $MU: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,599  ERROR  $TT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,626  ERROR  $HON: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,652  ERROR  $RACE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,679  ERROR  $CP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,706  ERROR  $PRY.MI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,733  ERROR  $SAN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,760  ERROR  $STX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,788  ERROR  $VIC.VN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,815  ERROR  $IBKR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,841  ERROR  $7741.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,868  ERROR  $6501.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,903  ERROR  $ZURN.SW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:54,930  ERROR  Failed to get ticker 'HWM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,959  ERROR  Failed to get ticker '0016.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:54,986  ERROR  Failed to get ticker '601601.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,014  ERROR  Failed to get ticker 'STAN.L' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,042  ERROR  Failed to get ticker 'AEM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,067  ERROR  Failed to get ticker 'ANZ.AX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,096  ERROR  Failed to get ticker 'FLEX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,124  ERROR  Failed to get ticker '6861.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,150  ERROR  Failed to get ticker 'MDT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,177  ERROR  Failed to get ticker 'MELI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,205  ERROR  Failed to get ticker 'LMT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,233  ERROR  Failed to get ticker 'CNI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,262  ERROR  Failed to get ticker 'IMO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,290  ERROR  Failed to get ticker 'PLTR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,318  ERROR  Failed to get ticker 'BUD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,347  ERROR  Failed to get ticker 'D' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,374  ERROR  Failed to get ticker 'GSK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,403  ERROR  Failed to get ticker 'EPD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,432  ERROR  Failed to get ticker 'HO.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,459  ERROR  Failed to get ticker 'MRVL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:55,485  ERROR  $HWM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,511  ERROR  $0016.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,538  ERROR  $601601.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,564  ERROR  $STAN.L: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,593  ERROR  $AEM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,618  ERROR  $ANZ.AX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,645  ERROR  $FLEX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,671  ERROR  $6861.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,697  ERROR  $MDT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,722  ERROR  $MELI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,749  ERROR  $LMT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,776  ERROR  $CNI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,802  ERROR  $IMO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,828  ERROR  $PLTR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,855  ERROR  $BUD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,881  ERROR  $D: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,907  ERROR  $GSK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,933  ERROR  $EPD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,959  ERROR  $HO.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:55,986  ERROR  $MRVL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:24:56,014  ERROR  Failed to get ticker 'WBD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:56,042  ERROR  Failed to get ticker '000858.SZ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:56,072  ERROR  Failed to get ticker 'SPOT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:24:56,100  ERROR  Failed to get ticker 'IFX.DE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,140  ERROR  Failed to get ticker '8001.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,172  ERROR  Failed to get ticker 'CI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,203  ERROR  Failed to get ticker '6503.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,234  ERROR  Failed to get ticker 'J36.SI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,264  ERROR  Failed to get ticker 'GD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,294  ERROR  Failed to get ticker 'CNQ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,325  ERROR  Failed to get ticker 'WELL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,355  ERROR  Failed to get ticker '034020.KS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,386  ERROR  Failed to get ticker 'SAF.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,417  ERROR  Failed to get ticker 'STM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,450  ERROR  Failed to get ticker '373220.KS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,481  ERROR  Failed to get ticker '4519.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,512  ERROR  Failed to get ticker 'ADSK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,542  ERROR  Failed to get ticker 'DDOG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,573  ERROR  Failed to get ticker 'NEE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,605  ERROR  Failed to get ticker 'ADP' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:11,632  ERROR  $WBD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,659  ERROR  $000858.SZ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,688  ERROR  $SPOT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,727  ERROR  $IFX.DE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,755  ERROR  $8001.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,781  ERROR  $CI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,807  ERROR  $6503.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,833  ERROR  $J36.SI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,860  ERROR  $GD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,887  ERROR  $CNQ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,914  ERROR  $WELL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,939  ERROR  $034020.KS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,966  ERROR  $SAF.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:11,991  ERROR  $STM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:12,017  ERROR  $373220.KS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:12,045  ERROR  $4519.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:12,071  ERROR  $ADSK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:12,097  ERROR  $DDOG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:12,124  ERROR  $NEE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:12,151  ERROR  $ADP: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:12,179  ERROR  Failed to get ticker 'SYK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,207  ERROR  Failed to get ticker 'CMI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,236  ERROR  Failed to get ticker 'OR.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,264  ERROR  Failed to get ticker 'QCOM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,293  ERROR  Failed to get ticker 'INVE-B.ST' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,320  ERROR  Failed to get ticker 'GMBXF' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,348  ERROR  Failed to get ticker 'EQNR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,376  ERROR  Failed to get ticker 'Z74.SI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,404  ERROR  Failed to get ticker 'ENEL.MI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,432  ERROR  Failed to get ticker 'CSX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,461  ERROR  Failed to get ticker 'APO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,488  ERROR  Failed to get ticker 'FDX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,515  ERROR  Failed to get ticker 'BRK-B' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,544  ERROR  Failed to get ticker 'LSEG.L' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,573  ERROR  Failed to get ticker 'NVS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,601  ERROR  Failed to get ticker 'XOM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:12,629  ERROR  Failed to get ticker 'BA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:27,667  ERROR  Failed to get ticker 'COST' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:27,698  ERROR  Failed to get ticker 'NU' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:27,728  ERROR  Failed to get ticker 'SU' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:27,757  ERROR  $SYK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:27,786  ERROR  $CMI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:27,814  ERROR  $OR.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:27,843  ERROR  $QCOM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:27,871  ERROR  $INVE-B.ST: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:27,897  ERROR  $GMBXF: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:27,924  ERROR  $EQNR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:27,951  ERROR  $Z74.SI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:27,984  ERROR  $ENEL.MI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,011  ERROR  $CSX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,038  ERROR  $APO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,065  ERROR  $FDX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,092  ERROR  $BRK-B: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,120  ERROR  $LSEG.L: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,146  ERROR  $NVS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,172  ERROR  $XOM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,198  ERROR  $BA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,225  ERROR  $COST: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,252  ERROR  $NU: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,279  ERROR  $SU: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,307  ERROR  Failed to get ticker 'GLE.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,335  ERROR  Failed to get ticker '601628.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,364  ERROR  Failed to get ticker 'ENR.F' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,392  ERROR  Failed to get ticker 'BKNG' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,420  ERROR  Failed to get ticker 'ASM.AS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,448  ERROR  Failed to get ticker 'BLK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,476  ERROR  Failed to get ticker 'GWW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,504  ERROR  Failed to get ticker 'LT.NS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,532  ERROR  Failed to get ticker 'WFC' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,561  ERROR  Failed to get ticker 'ACN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,588  ERROR  Failed to get ticker 'UBER' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,616  ERROR  Failed to get ticker 'VRTX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,644  ERROR  Failed to get ticker 'O39.SI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,671  ERROR  Failed to get ticker 'NVO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,699  ERROR  Failed to get ticker 'CSCO' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,738  ERROR  Failed to get ticker '600276.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,766  ERROR  Failed to get ticker 'DASH' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,794  ERROR  Failed to get ticker '601166.SS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,822  ERROR  Failed to get ticker 'RELIANCE.NS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,867  ERROR  Failed to get ticker 'ABEV' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:28,894  ERROR  $GLE.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,920  ERROR  $601628.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,946  ERROR  $ENR.F: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:28,987  ERROR  $BKNG: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,035  ERROR  $ASM.AS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,064  ERROR  $BLK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,093  ERROR  $GWW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,120  ERROR  $LT.NS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,146  ERROR  $WFC: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,173  ERROR  $ACN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,202  ERROR  $UBER: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,228  ERROR  $VRTX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,258  ERROR  $O39.SI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,285  ERROR  $NVO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,312  ERROR  $CSCO: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,338  ERROR  $600276.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,364  ERROR  $DASH: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,395  ERROR  $601166.SS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,423  ERROR  $RELIANCE.NS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,449  ERROR  $ABEV: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:29,480  ERROR  Failed to get ticker 'LIN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,508  ERROR  Failed to get ticker '7182.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,537  ERROR  Failed to get ticker 'PGR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,565  ERROR  Failed to get ticker 'COHR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,593  ERROR  Failed to get ticker '7011.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,621  ERROR  Failed to get ticker 'MDLZ' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,649  ERROR  Failed to get ticker 'GILD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,677  ERROR  Failed to get ticker '9433.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,704  ERROR  Failed to get ticker 'NAB.AX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,732  ERROR  Failed to get ticker 'NXPI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,760  ERROR  Failed to get ticker 'DLR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,788  ERROR  Failed to get ticker 'HLT' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,816  ERROR  Failed to get ticker 'CIEN' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,864  ERROR  Failed to get ticker 'NEM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,892  ERROR  Failed to get ticker 'ABBV' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,920  ERROR  Failed to get ticker 'PRX.AS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,947  ERROR  Failed to get ticker 'VOLV-A.ST' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:29,997  ERROR  Failed to get ticker 'FAB.AE' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:30,025  ERROR  Failed to get ticker '2317.TW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:30,056  ERROR  Failed to get ticker 'MNST' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:30,083  ERROR  $LIN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:30,111  ERROR  $7182.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:30,139  ERROR  $PGR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:30,166  ERROR  $COHR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:30,195  ERROR  $7011.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:30,223  ERROR  $MDLZ: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:30,251  ERROR  $GILD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:30,279  ERROR  $9433.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,328  ERROR  $NAB.AX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,358  ERROR  $NXPI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,390  ERROR  $DLR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,420  ERROR  $HLT: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,448  ERROR  $CIEN: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,477  ERROR  $NEM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,507  ERROR  $ABBV: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,536  ERROR  $PRX.AS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,565  ERROR  $VOLV-A.ST: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,594  ERROR  $FAB.AE: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,621  ERROR  $2317.TW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,647  ERROR  $MNST: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:45,728  ERROR  Failed to get ticker 'FCX' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:45,756  ERROR  Failed to get ticker '7010.SR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:45,784  ERROR  Failed to get ticker 'META' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:45,812  ERROR  Failed to get ticker 'KKR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:45,840  ERROR  Failed to get ticker 'HOOD' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:45,868  ERROR  Failed to get ticker 'WPM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:45,897  ERROR  Failed to get ticker 'AON' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:45,933  ERROR  Failed to get ticker 'MPWR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:45,962  ERROR  Failed to get ticker '2259.HK' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:45,989  ERROR  Failed to get ticker 'IBM' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:46,016  ERROR  Failed to get ticker 'AME' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:46,045  ERROR  Failed to get ticker 'URI' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:46,073  ERROR  Failed to get ticker 'SHEL' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:46,101  ERROR  Failed to get ticker 'RKLB' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:46,130  ERROR  Failed to get ticker 'BNP.PA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:46,159  ERROR  Failed to get ticker 'SBIN.NS' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:46,187  ERROR  Failed to get ticker 'SHW' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:46,216  ERROR  Failed to get ticker 'PWR' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:46,244  ERROR  Failed to get ticker '4063.T' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:46,273  ERROR  Failed to get ticker 'CMCSA' reason: Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-10 14:25:46,299  ERROR  $FCX: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,325  ERROR  $7010.SR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,352  ERROR  $META: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,379  ERROR  $KKR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,407  ERROR  $HOOD: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,432  ERROR  $WPM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,459  ERROR  $AON: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,485  ERROR  $MPWR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,512  ERROR  $2259.HK: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,538  ERROR  $IBM: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,564  ERROR  $AME: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,591  ERROR  $URI: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,618  ERROR  $SHEL: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,643  ERROR  $RKLB: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,670  ERROR  $BNP.PA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,697  ERROR  $SBIN.NS: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,723  ERROR  $SHW: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,749  ERROR  $PWR: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,775  ERROR  $4063.T: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,802  ERROR  $CMCSA: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,803  ERROR  
+500 Failed downloads:
+2026-05-10 14:25:46,804  ERROR  ['300750.SZ', 'MAR']: CertificateVerifyError('Failed to perform, curl: (60) SSL certificate problem: self signed certificate in certificate chain. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')
+2026-05-10 14:25:46,804  ERROR  ['KBCSF', '002371.SZ', 'PLD', 'CARR', 'TEL', 'CB', 'KLAC', '601328.SS', 'KEYS', 'PBR', 'SNOW', 'OXY', 'JPM', '0728.HK', 'TMO', 'CM', 'ADNOCGAS.AE', 'ABNB', 'SNDK', 'ORCL', 'NTES', 'CL', 'B', 'ABBN.SW', 'CRM', 'TSM', 'MA', 'LRCX', 'BHARTIARTL.NS', 'GEV', '300476.SZ', 'CEG', '002475.SZ', 'SBER.ME', '6146.T', 'MCK', 'NESN.SW', 'INTC', 'CME', 'NSC', 'MBG.DE', 'UBS', 'DIS', 'MPC', 'VALE', 'ITX.MC', 'TDG', 'ANET', 'CVX', 'VZ', '285A.T', '5803.T', 'LOW', 'COF', 'ALL', 'NA.TO', 'SAP', 'ATD.TO', 'IBN', 'CBA.AX', 'APH', 'CTAS', 'G.MI', 'EQIX', '0981.HK', 'CFR.SW', 'HD', 'WES.AX', 'ETR', 'NDA-FI.HE', 'UNP', '2222.SR', 'AMZN', 'BK', 'L.TO', 'TXN', 'CDNS', 'UL', 'SBUX', '600900.SS', '688256.SS', 'TRGP', 'PDD', 'TTE', 'SLB', 'MRK.DE', 'DB', 'MFG', 'CS.PA', 'CTVA', 'BA.L', 'KMI', 'EOG', 'WMMVF', 'ARM', 'SPGI', 'RIO', 'DELTA.BK', '601658.SS', 'FIX', 'ETN', 'MCHP', 'HDB', 'EMIRATESNBD.AE', 'PCAR', 'BMW.DE', '000660.KS', 'LHX', 'CRH', 'TER', 'CDI.PA', 'C', 'CRWV', '300308.SZ', 'WMT', 'NOW', 'AMGN', 'SONY', 'MUFG', '1299.HK', 'RSG', '601988.SS', 'AEP', 'COP', '1211.SR', 'REGN', 'DUK', '0941.HK', 'ITW', 'BSX', 'RELX', '005930.KS', '1398.HK', 'LICI.NS', 'ADI', 'GLCNF', 'TRP', 'INFY', '601998.SS', 'MRK', 'EMR', 'TGT', 'PEP', 'UCG.MI', 'NKE', 'TCEHY', 'MQG.AX', 'UI', 'AI.PA', '8031.T', 'AFL', '5802.T', '601088.SS', 'GE', '8053.T', '3968.HK', 'AMAT', 'PSX', 'ORA.PA', 'RMS.PA', 'COR', 'CVE', 'PANW', 'NUE', '600028.SS', 'IHC.AE', 'MSFT', 'RR.L', 'AJG', 'ROSN.ME', '3690.HK', 'TAQA.AE', 'ASX', 'ISRG', 'O', 'JCI', '0883.HK', 'DTE.DE', 'EL.PA', 'ISP.MI', 'ASML', '601899.SS', 'AZO', 'ICE', 'KO', 'AMX', '9432.T', 'SE', '3993.HK', 'DELL', 'RY', '0857.HK', 'SCCO', '9633.HK', 'UPS', '6981.T', 'PSA', 'ITUB', 'BABA', 'ENB', 'SHOP', 'HOLN.SW', 'AAL.L', 'XIACF', 'RHM.F', 'WM', 'MO', 'FER.MC', 'E', '2454.TW', 'UNH', 'NOK', 'GM', 'BPAC3.SA', 'AMT', '2914.T', '601318.SS', 'MFC', 'MC.PA', 'BCS', 'AIR.PA', 'WDC', 'TFC', 'ING', 'GLW', '002594.SZ', 'GOOG', '6098.T', 'CVNA', 'MCO', 'WBC.AX', '601288.SS', '000333.SZ', 'SNPS', 'LITE', 'RTX', 'CCJ', '600030.SS', 'CRWD', 'TJX', 'DB1.DE', '601939.SS', 'BAM', 'ORLY', 'AU', '402340.KS', 'ATCO-B.ST', 'BAC', 'NET', 'FTNT', '600519.SS', 'PNC', '005380.KS', 'T', 'ROST', 'BBVA', 'WMB', '9434.T', 'INTU', '6857.T', 'LYG', 'PH', 'UCB.VI', 'HSBC', '2308.TW', 'TSLA', 'BN', '8766.T', 'PG', 'GS', 'ECL', 'ELV', 'BX', 'MMM', 'BMO', 'TM', 'ANTO.L', 'DHR', '8002.T', 'COIN', 'VOW3.DE', 'SMFG', 'SNY', 'ET', 'BKR', 'BE', 'OKE', 'TD', 'TAK', '8035.T', 'ALV.DE', 'MUV2.DE', 'USB', 'FAST', 'BAS.DE', 'MCD', 'AZN', 'SCHW', '7974.T', 'BNS', 'DSV.VI', '2359.HK', 'LLY', '9983.T', 'AMD', 'ACA.PA', 'PFE', 'ENGI.PA', '2388.HK', 'IBE.MC', 'FANG', '601138.SS', 'HINDUNILVR.NS', 'HCA', 'TRV', 'DE', 'BMY', 'TCS.NS', 'TMUS', 'V', 'RCL', 'BAJFINANCE.NS', '1180.SR', 'BHP', 'NVDA', 'D05.SI', 'CVS', 'ADBE', 'NOC', 'AXP', 'ABT', 'DHL.DE', 'VLO', 'MRSH', 'APD', 'CAT', 'RO.SW', 'MSTR', '8058.T', 'CABK.MC', '300502.SZ', 'DG.PA', 'MSI', 'SIE.DE', 'MPLX', 'BP', 'SU.PA', 'NGG', 'APP', 'SO', 'MS', '1120.SR', 'NWG', 'AVGO', '9984.T', 'PM', 'SRE', 'VRT', 'SPG', 'NFLX', '0388.HK', 'EOAN.DE', 'AAPL', 'BTI', 'JNJ', 'MU', 'TT', 'HON', 'RACE', 'CP', 'PRY.MI', 'SAN', 'STX', 'VIC.VN', 'IBKR', '7741.T', '6501.T', 'ZURN.SW', 'HWM', '0016.HK', '601601.SS', 'STAN.L', 'AEM', 'ANZ.AX', 'FLEX', '6861.T', 'MDT', 'MELI', 'LMT', 'CNI', 'IMO', 'PLTR', 'BUD', 'D', 'GSK', 'EPD', 'HO.PA', 'MRVL', 'WBD', '000858.SZ', 'SPOT', 'IFX.DE', '8001.T', 'CI', '6503.T', 'J36.SI', 'GD', 'CNQ', 'WELL', '034020.KS', 'SAF.PA', 'STM', '373220.KS', '4519.T', 'ADSK', 'DDOG', 'NEE', 'ADP', 'SYK', 'CMI', 'OR.PA', 'QCOM', 'INVE-B.ST', 'GMBXF', 'EQNR', 'Z74.SI', 'ENEL.MI', 'CSX', 'APO', 'FDX', 'BRK-B', 'LSEG.L', 'NVS', 'XOM', 'BA', 'COST', 'NU', 'SU', 'GLE.PA', '601628.SS', 'ENR.F', 'BKNG', 'ASM.AS', 'BLK', 'GWW', 'LT.NS', 'WFC', 'ACN', 'UBER', 'VRTX', 'O39.SI', 'NVO', 'CSCO', '600276.SS', 'DASH', '601166.SS', 'RELIANCE.NS', 'ABEV', 'LIN', '7182.T', 'PGR', 'COHR', '7011.T', 'MDLZ', 'GILD', '9433.T', 'NAB.AX', 'NXPI', 'DLR', 'HLT', 'CIEN', 'NEM', 'ABBV', 'PRX.AS', 'VOLV-A.ST', 'FAB.AE', '2317.TW', 'MNST', 'FCX', '7010.SR', 'META', 'KKR', 'HOOD', 'WPM', 'AON', 'MPWR', '2259.HK', 'IBM', 'AME', 'URI', 'SHEL', 'RKLB', 'BNP.PA', 'SBIN.NS', 'SHW', 'PWR', '4063.T', 'CMCSA']: possibly delisted; no price data found  (period=2d)
+2026-05-10 14:25:46,822  INFO    Preços obtidos para 0 tickers.
+2026-05-10 14:25:46,822  INFO  Buscando setores (10 threads paralelas)...
+2026-05-10 14:25:49,800  INFO    100/500 setores processados...
+2026-05-10 14:26:07,626  INFO    200/500 setores processados...
+2026-05-10 14:26:40,468  INFO    300/500 setores processados...
+2026-05-10 14:26:58,818  INFO    400/500 setores processados...
+2026-05-10 14:27:12,785  INFO    500/500 setores processados...
+2026-05-10 14:27:12,787  INFO    Setores preenchidos: 0/500
+2026-05-10 14:27:12,791  INFO  Salvando no Supabase...
+2026-05-10 14:27:13,442  INFO    200/500 registros gravados...
+2026-05-10 14:27:13,489  INFO    400/500 registros gravados...
+2026-05-10 14:27:13,525  INFO    500/500 registros gravados...
+2026-05-10 14:27:13,526  INFO  Supabase: 500 registros salvos com sucesso.
+2026-05-10 14:27:13,526  INFO  =======================================================
+2026-05-10 14:27:13,526  INFO    COLETA CONCLUIDA COM SUCESSO
+2026-05-10 14:27:13,527  INFO  =======================================================
+2026-05-10 17:35:31,603  INFO  =======================================================
+2026-05-10 17:35:31,604  INFO    COLETA INICIADA — 2026-05-10
+2026-05-10 17:35:31,604  INFO  =======================================================
+2026-05-10 17:35:31,604  INFO  Scraping companiesmarketcap.com — top 500...
+2026-05-10 17:35:31,604  INFO    Página 1/5 ...
+2026-05-10 17:35:31,728  WARNING      Erro na página 1: HTTPSConnectionPool(host='companiesmarketcap.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1081)')))
+2026-05-10 17:35:33,230  INFO    Página 2/5 ...
+2026-05-10 17:35:33,339  WARNING      Erro na página 2: HTTPSConnectionPool(host='companiesmarketcap.com', port=443): Max retries exceeded with url: /page/2/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1081)')))
+2026-05-10 17:35:34,840  INFO    Página 3/5 ...
+2026-05-10 17:35:34,960  WARNING      Erro na página 3: HTTPSConnectionPool(host='companiesmarketcap.com', port=443): Max retries exceeded with url: /page/3/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1081)')))
+2026-05-10 17:35:36,461  INFO    Página 4/5 ...
+2026-05-10 17:35:36,586  WARNING      Erro na página 4: HTTPSConnectionPool(host='companiesmarketcap.com', port=443): Max retries exceeded with url: /page/4/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1081)')))
+2026-05-10 17:35:38,087  INFO    Página 5/5 ...
+2026-05-10 17:35:38,207  WARNING      Erro na página 5: HTTPSConnectionPool(host='companiesmarketcap.com', port=443): Max retries exceeded with url: /page/5/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1081)')))
+2026-05-10 17:35:38,208  ERROR  Scraping retornou 0 empresas. Verifique a estrutura HTML do site.
