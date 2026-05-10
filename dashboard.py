@@ -1,0 +1,726 @@
+# ============================================================
+#  MARKET CAP RADAR — Dashboard
+#  streamlit run dashboard.py
+# ============================================================
+
+import os
+from pathlib import Path
+
+# SSL corporativo — deve estar definido antes do import yfinance
+_pem = Path(__file__).parent / "empresa.pem"
+_pem_str = str(_pem) if _pem.exists() else ""
+os.environ.setdefault("CURL_CA_BUNDLE", _pem_str)
+os.environ.setdefault("REQUESTS_CA_BUNDLE", _pem_str)
+
+import streamlit as st
+import pandas as pd
+import plotly.graph_objects as go
+import requests, urllib3
+urllib3.disable_warnings()
+
+try:
+    import yfinance as yf
+    _yf_ok = True
+except ImportError:
+    _yf_ok = False
+
+from config import SUPABASE_URL, SUPABASE_KEY, JANELAS_DIAS
+
+st.set_page_config(page_title="Market Cap Radar", layout="wide")
+
+dark_mode = True  # dashboard sempre em dark mode
+
+
+# ── CSS (sempre dark mode) ────────────────────────────────────
+_CSS = """
+html, body, [class*="css"] {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+.block-container { padding-top: 1.2rem !important; padding-bottom: 2rem !important; }
+
+/* ─ DARK MODE ─────────────────────────────────────────────── */
+.stApp,
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"] { background-color: #0d1117 !important; }
+[data-testid="stMarkdown"] { background-color: transparent !important; }
+[data-testid="stHeader"] {
+    background-color: rgba(13,17,23,.98) !important;
+    border-bottom: 1px solid #21262d !important;
+}
+[data-testid="stSidebar"],
+[data-testid="stSidebar"] > div:first-child {
+    background-color: #161b22 !important;
+    border-right: 1px solid #30363d !important;
+}
+
+/* Texto padrão — branco */
+[data-testid="stMarkdown"] p,
+[data-testid="stCaptionContainer"] p,
+[data-testid="stSelectbox"] label,
+[data-testid="stWidgetLabel"] p,
+[data-testid="stText"] p { color: #e6edf3 !important; }
+
+/* Selectbox */
+[data-baseweb="select"] > div {
+    background-color: #1c2128 !important;
+    border-color: #30363d !important;
+}
+[data-baseweb="select"] span { color: #e6edf3 !important; }
+[data-baseweb="popover"],
+[data-baseweb="menu"] { background-color: #1c2128 !important; }
+[data-baseweb="menu"] li { color: #e6edf3 !important; }
+[data-baseweb="menu"] li:hover { background-color: #21262d !important; }
+
+/* Botão */
+[data-testid="stButton"] > button {
+    background-color: #21262d !important;
+    border: 1px solid #30363d !important;
+    color: #e6edf3 !important;
+}
+[data-testid="stButton"] > button:hover { background-color: #30363d !important; }
+
+/* Divisor */
+hr { border-color: #30363d !important; }
+
+/* ─ Cabeçalho ─────────────────────────────────────────────── */
+.mcr-hdr {
+    display: flex; justify-content: space-between;
+    align-items: flex-end; border-bottom: 2px solid #30363d;
+    padding-bottom: 8px; margin-bottom: 1rem;
+}
+.mcr-title {
+    font-size: .9rem; font-weight: 700; letter-spacing: .16em;
+    text-transform: uppercase; color: #e6edf3; margin: 0;
+}
+.mcr-sub  { font-size: .67rem; color: #8b949e; letter-spacing: .07em; text-transform: uppercase; margin: 3px 0 0; }
+.mcr-info { font-size: .7rem; color: #8b949e; text-align: right; line-height: 1.7; }
+
+/* ─ KPI cards ──────────────────────────────────────────────── */
+.kpi-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: #21262d; border: 1px solid #21262d;
+    border-radius: 3px; margin-bottom: 1.1rem; overflow: hidden;
+}
+.kpi   { background: #1c2128; padding: 13px 20px; }
+.kpi-l { font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: #8b949e; margin-bottom: 4px; }
+.kpi-v { font-size: 1.65rem; font-weight: 600; color: #e6edf3; line-height: 1; }
+.kpi-d { font-size: .71rem; color: #8b949e; margin-top: 4px; }
+.kup   { color: #3fb950 !important; }
+.kdown { color: #f85149 !important; }
+
+/* ─ Títulos de seção ────────────────────────────────────────── */
+.sec {
+    font-size: 1rem; letter-spacing: .08em; text-transform: uppercase;
+    color: #e6edf3; font-weight: 700; padding: 7px 0 7px 12px;
+    border-left: 3px solid #58a6ff; margin-bottom: 10px;
+}
+.sec-sub {
+    font-size: .82rem; letter-spacing: .07em; text-transform: uppercase;
+    color: #8b949e; font-weight: 600; padding: 5px 0 5px 10px;
+    border-left: 2px solid #30363d; margin-bottom: 6px;
+}
+
+/* ─ Tabela de movimentações ─────────────────────────────────── */
+.mov-tbl { width: 100%; border-collapse: collapse; font-size: .8rem; background-color: transparent; }
+.mov-tbl th {
+    font-size: .58rem; letter-spacing: .1em; text-transform: uppercase;
+    color: #8b949e; font-weight: 600; text-align: left;
+    padding: 5px 8px; border-bottom: 1px solid #21262d;
+    background-color: transparent;
+}
+.mov-tbl td { padding: 5px 8px; border-bottom: 1px solid #21262d; color: #e6edf3; background-color: transparent; }
+.mov-tbl tr:last-child td { border-bottom: none; }
+.badge-in  { color: #3fb950; font-weight: 700; font-size: .68rem; }
+.badge-out { color: #f85149; font-weight: 700; font-size: .68rem; }
+
+#MainMenu, footer { visibility: hidden; }
+[data-testid="stDecoration"] { display: none; }
+"""
+
+st.markdown(f"<style>{_CSS}</style>", unsafe_allow_html=True)
+
+
+# ── Funções de dados ──────────────────────────────────────────
+
+@st.cache_data(ttl=300)
+def carregar_dados() -> pd.DataFrame:
+    url = f"{SUPABASE_URL}/rest/v1/snapshots?select=*&order=data.desc&limit=50000"
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Accept": "application/json",
+    }
+    resp = requests.get(url, headers=headers, verify=False, timeout=15)
+    resp.raise_for_status()
+    dados = resp.json()
+    if not dados:
+        return pd.DataFrame()
+    df = pd.DataFrame(dados)
+    df["data"] = pd.to_datetime(df["data"])
+    df["market_cap_bi"] = pd.to_numeric(df["market_cap_usd"], errors="coerce") / 1e9
+    return df
+
+
+@st.cache_data(ttl=300)
+def carregar_historico_empresa(ticker: str) -> pd.DataFrame:
+    """Carrega histórico de market cap da tabela historico_mercado no Supabase."""
+    url = (
+        f"{SUPABASE_URL}/rest/v1/historico_mercado"
+        f"?select=data,preco,market_cap_usd&ticker=eq.{ticker}"
+        f"&order=data.asc&limit=5000"
+    )
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Accept": "application/json",
+    }
+    try:
+        resp = requests.get(url, headers=headers, verify=False, timeout=15)
+        if not resp.ok:
+            return pd.DataFrame()
+        dados = resp.json()
+        if not dados:
+            return pd.DataFrame()
+        df_h = pd.DataFrame(dados)
+        df_h["data"] = pd.to_datetime(df_h["data"])
+        df_h["market_cap_bi"] = pd.to_numeric(df_h["market_cap_usd"], errors="coerce") / 1e9
+        return df_h.sort_values("data").reset_index(drop=True)
+    except Exception:
+        return pd.DataFrame()
+
+
+def _debug_api() -> dict:
+    url = f"{SUPABASE_URL}/rest/v1/snapshots?select=id,data,ticker&limit=5"
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Accept": "application/json",
+    }
+    try:
+        resp = requests.get(url, headers=headers, verify=False, timeout=10)
+        return {"status": resp.status_code, "registros": resp.json()}
+    except Exception as exc:
+        return {"status": "erro", "registros": [], "detalhe": str(exc)}
+
+
+def calcular_rank_velocity(df: pd.DataFrame, janela: int) -> pd.DataFrame:
+    hoje  = df[df["data"] == df["data"].max()].copy()
+    antes = df[df["data"] <= df["data"].max() - pd.Timedelta(days=janela)]
+    if antes.empty:
+        hoje["delta_rank"]     = pd.NA
+        hoje["var_mktcap_pct"] = pd.NA
+        return hoje
+    data_ref = antes["data"].max()
+    ref = (
+        antes[antes["data"] == data_ref][["ticker", "rank", "market_cap_bi"]]
+        .rename(columns={"rank": "rank_antes", "market_cap_bi": "mktcap_antes"})
+    )
+    merged = hoje.merge(ref, on="ticker", how="left")
+    merged["delta_rank"] = (merged["rank_antes"] - merged["rank"]).astype("Int64")
+    merged["var_mktcap_pct"] = (
+        (merged["market_cap_bi"] - merged["mktcap_antes"])
+        / merged["mktcap_antes"] * 100
+    )
+    return merged
+
+
+def calcular_movimentacoes(
+    df: pd.DataFrame, janela: int
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    hoje_data  = df["data"].max()
+    candidatos = df[df["data"] <= hoje_data - pd.Timedelta(days=janela)]
+    if candidatos.empty:
+        return pd.DataFrame(), pd.DataFrame()
+    data_ref   = candidatos["data"].max()
+    hoje_snap  = df[df["data"] == hoje_data]
+    antes_snap = df[df["data"] == data_ref]
+
+    hoje_tickers  = set(hoje_snap["ticker"])
+    antes_tickers = set(antes_snap["ticker"])
+    cols = ["rank", "nome", "ticker", "market_cap_bi", "setor", "pais"]
+
+    entradas = (
+        hoje_snap[hoje_snap["ticker"].isin(hoje_tickers - antes_tickers)][cols]
+        .sort_values("rank").reset_index(drop=True)
+    )
+    saidas = (
+        antes_snap[antes_snap["ticker"].isin(antes_tickers - hoje_tickers)][cols]
+        .sort_values("rank").reset_index(drop=True)
+    )
+    return entradas, saidas
+
+
+def fmt_delta(v) -> str:
+    if pd.isna(v): return "n/d"
+    v = int(v)
+    if v == 0:   return "—"
+    if v >= 20:  return f"▲▲ +{v}"
+    if v > 0:    return f"▲ +{v}"
+    if v <= -20: return f"▼▼ {v}"
+    return f"▼ {v}"
+
+
+def fmt_pct(v) -> str:
+    if pd.isna(v): return "—"
+    return f"{float(v):+.2f}%"
+
+
+def _mov_html(df_mov: pd.DataFrame, tipo: str) -> str:
+    if df_mov.empty:
+        return (
+            '<p style="font-size:.78rem;color:#94a3b8;padding:8px 0 4px;">'
+            "Nenhuma movimentação no período."
+            "</p>"
+        )
+    badge_cls = "badge-in" if tipo == "entrada" else "badge-out"
+    badge_txt = "ENTROU" if tipo == "entrada" else "SAIU"
+    rows = ""
+    for _, r in df_mov.iterrows():
+        nome   = str(r.get("nome",   "—") or "—")[:34]
+        ticker = str(r.get("ticker", "—") or "—")
+        mkt    = f"{r['market_cap_bi']:,.1f}" if pd.notna(r.get("market_cap_bi")) else "—"
+        setor  = str(r.get("setor",  "—") or "—")[:22]
+        rows += (
+            f"<tr>"
+            f'<td><span class="{badge_cls}">{badge_txt}</span></td>'
+            f"<td><strong>{nome}</strong></td>"
+            f'<td style="color:#64748b">{ticker}</td>'
+            f'<td style="color:#475569">{mkt}</td>'
+            f'<td style="color:#94a3b8">{setor}</td>'
+            f"</tr>"
+        )
+    return (
+        '<table class="mov-tbl"><thead><tr>'
+        "<th></th><th>Empresa</th><th>Ticker</th>"
+        "<th>Mkt Cap (US$ bi)</th><th>Setor</th>"
+        f"</tr></thead><tbody>{rows}</tbody></table>"
+    )
+
+
+# ── Sidebar – botão de atualização ────────────────────────────
+with st.sidebar:
+    if st.button("Atualizar dados", use_container_width=True):
+        carregar_dados.clear()
+        st.rerun()
+    st.caption("Cache renovado automaticamente a cada 5 min.")
+
+
+# ── Carregar dados ─────────────────────────────────────────────
+try:
+    df = carregar_dados()
+except Exception as exc:
+    st.error(f"Erro ao conectar ao Supabase: {exc}")
+    st.stop()
+
+if df.empty:
+    st.warning("Nenhum dado encontrado. Execute o coletor primeiro.")
+    with st.expander("Diagnostico da conexao"):
+        debug = _debug_api()
+        st.write(f"**Status HTTP:** `{debug['status']}`")
+        if debug["registros"]:
+            st.success(
+                f"API retornou {len(debug['registros'])} registro(s). "
+                "Clique em 'Atualizar dados' no menu lateral."
+            )
+            st.json(debug["registros"])
+        else:
+            st.error("Tabela `snapshots` vazia ou sem permissao de leitura (RLS).")
+            if "detalhe" in debug:
+                st.code(debug["detalhe"])
+    st.stop()
+
+
+# ── Dados base ─────────────────────────────────────────────────
+hoje_df    = df[df["data"] == df["data"].max()]
+ultima     = df["data"].max().strftime("%d/%m/%Y")
+n_universo = len(hoje_df)
+
+
+# ── 1. Header estático ─────────────────────────────────────────
+st.markdown(f"""
+<div class="mcr-hdr">
+  <div>
+    <div class="mcr-title">Market Cap Radar</div>
+    <div class="mcr-sub">Empresas globais com market cap acima de US$&nbsp;50 bilhões</div>
+  </div>
+  <div class="mcr-info">
+    Atualizado em {ultima}<br>
+    {n_universo:,} empresas monitoradas
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+
+# ── 2. Filtros ─────────────────────────────────────────────────
+fc1, fc2, fc3, fc4 = st.columns([1, 2, 2, 1])
+with fc1:
+    janela = st.selectbox(
+        "Período",
+        options=JANELAS_DIAS,
+        format_func=lambda x: f"{x} dias",
+    )
+with fc2:
+    setores   = ["Todos os setores"] + sorted(hoje_df["setor"].dropna().unique().tolist())
+    setor_sel = st.selectbox("Setor", setores)
+with fc3:
+    paises   = ["Todos os países"] + sorted(hoje_df["pais"].dropna().unique().tolist())
+    pais_sel = st.selectbox("País", paises)
+with fc4:
+    top_n = st.selectbox("Top N", options=[25, 50, 100, 200, 500], index=1)
+
+
+# ── 3. Rank velocity + filtros ─────────────────────────────────
+df_vel = calcular_rank_velocity(df, janela)
+
+if setor_sel != "Todos os setores":
+    df_vel = df_vel[df_vel["setor"] == setor_sel]
+if pais_sel != "Todos os países":
+    df_vel = df_vel[df_vel["pais"] == pais_sel]
+
+df_vel = df_vel.sort_values("rank").head(top_n)
+
+
+# ── 4. KPIs ────────────────────────────────────────────────────
+n_total  = len(df_vel)
+dr_serie = df_vel["delta_rank"].fillna(0)
+n_up     = int(dr_serie.gt(0).sum())
+n_down   = int(dr_serie.lt(0).sum())
+n_flat   = n_total - n_up - n_down
+pct_up   = f"{n_up   / n_total * 100:.0f}%" if n_total else "—"
+pct_down = f"{n_down / n_total * 100:.0f}%" if n_total else "—"
+
+st.markdown(f"""
+<div class="kpi-strip">
+  <div class="kpi">
+    <div class="kpi-l">Subiram de posição</div>
+    <div class="kpi-v kup">{n_up:,}</div>
+    <div class="kpi-d">{pct_up} do filtro</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-l">Caíram de posição</div>
+    <div class="kpi-v kdown">{n_down:,}</div>
+    <div class="kpi-d">{pct_down} do filtro</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-l">Inalteradas / n/d</div>
+    <div class="kpi-v">{n_flat:,}</div>
+    <div class="kpi-d">&nbsp;</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-l">Empresas no filtro</div>
+    <div class="kpi-v">{n_total:,}</div>
+    <div class="kpi-d">{n_total} de {n_universo} monitoradas</div>
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+
+# ── 5. Tabela principal ────────────────────────────────────────
+col_delta   = f"Delta ({janela}d)"
+col_var_mkt = f"Var. MktCap ({janela}d)"
+
+for _col in ["preco", "var_mktcap_pct", "setor", "pais"]:
+    if _col not in df_vel.columns:
+        df_vel = df_vel.copy()
+        df_vel[_col] = None
+
+raw = df_vel[[
+    "rank", "nome", "ticker", "setor", "pais",
+    "market_cap_bi", "preco", "variacao_dia_pct", "delta_rank", "var_mktcap_pct",
+]].copy().reset_index(drop=True)
+
+_delta_vals = raw["delta_rank"].to_list()
+
+raw[col_delta]          = raw["delta_rank"].apply(fmt_delta)
+raw["Var. dia"]         = raw["variacao_dia_pct"].apply(fmt_pct)
+raw[col_var_mkt]        = raw["var_mktcap_pct"].apply(fmt_pct)
+raw["Mkt Cap (US$ bi)"] = raw["market_cap_bi"].apply(
+    lambda v: f"{v:,.1f}" if pd.notna(v) else "—"
+)
+raw["Preço (USD)"] = raw["preco"].apply(
+    lambda v: f"${float(v):,.2f}" if pd.notna(v) else "—"
+)
+
+tabela = raw[[
+    "rank", "nome", "ticker", "setor", "pais",
+    "Mkt Cap (US$ bi)", "Preço (USD)", "Var. dia", col_var_mkt, col_delta,
+]].rename(columns={
+    "rank":   "Pos.",
+    "nome":   "Empresa",
+    "ticker": "Ticker",
+    "setor":  "Setor",
+    "pais":   "País",
+})
+
+
+def _row_style(row):
+    i = row.name
+    try:
+        dr = _delta_vals[i]
+        if pd.isna(dr):
+            return [""] * len(row)
+        dr = int(dr)
+    except (IndexError, TypeError, ValueError):
+        return [""] * len(row)
+
+    if dr >= 20:
+        return ["background-color: #14532d; color: #86efac; font-weight: 700"] * len(row)
+    if dr <= -20:
+        return ["background-color: #7f1d1d; color: #fca5a5; font-weight: 700"] * len(row)
+
+    styles = [""] * len(row)
+    col_list = list(row.index)
+    if col_delta in col_list:
+        idx = col_list.index(col_delta)
+        styles[idx] = (
+            "color: #16a34a; font-weight: 600" if dr > 0
+            else "color: #dc2626; font-weight: 600"
+        )
+    return styles
+
+
+st.markdown(
+    f'<div class="sec">Rank movers — últimos {janela} dias'
+    f"&nbsp;&nbsp;|&nbsp;&nbsp;"
+    f'<span style="color:#14532d;font-weight:700">▲▲ / </span>'
+    f'<span style="color:#991b1b;font-weight:700">▼▼</span>'
+    f"&nbsp;saltos ≥ 20 posições</div>",
+    unsafe_allow_html=True,
+)
+
+styled = tabela.style.apply(_row_style, axis=1).hide(axis="index")
+st.dataframe(styled, use_container_width=True, height=560, hide_index=True)
+
+
+# ── 6. Movimentações do período ────────────────────────────────
+st.markdown(
+    f'<div class="sec" style="margin-top:1.5rem;">'
+    f"Movimentações do período — {janela} dias</div>",
+    unsafe_allow_html=True,
+)
+
+entradas, saidas = calcular_movimentacoes(df, janela)
+
+mc1, mc2 = st.columns(2)
+
+with mc1:
+    n_ent = len(entradas)
+    label_ent = f"+{n_ent}" if n_ent else "0"
+    st.markdown(
+        f'<div class="sec-sub">Entradas no ranking'
+        f'&nbsp;<span style="color:#16a34a;font-weight:700">{label_ent}</span></div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(_mov_html(entradas, "entrada"), unsafe_allow_html=True)
+
+with mc2:
+    n_sai = len(saidas)
+    label_sai = f"-{n_sai}" if n_sai else "0"
+    st.markdown(
+        f'<div class="sec-sub">Saídas do ranking'
+        f'&nbsp;<span style="color:#dc2626;font-weight:700">{label_sai}</span></div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(_mov_html(saidas, "saida"), unsafe_allow_html=True)
+
+
+# ── 7. Evolução de empresa ─────────────────────────────────────
+st.markdown(
+    '<div class="sec" style="margin-top:1.5rem;">Evolução por empresa</div>',
+    unsafe_allow_html=True,
+)
+
+empresas_lista = sorted(hoje_df["nome"].dropna().unique().tolist())
+if not empresas_lista:
+    st.info("Nenhuma empresa disponivel para analise de evolucao.")
+else:
+    empresa_sel = st.selectbox("Empresa", empresas_lista, label_visibility="collapsed")
+
+    match = hoje_df[hoje_df["nome"] == empresa_sel]["ticker"]
+    if not match.empty:
+        ticker_sel = match.values[0]
+        df_emp     = df[df["ticker"] == ticker_sel].sort_values("data")
+
+        # ── Paleta dark ─────────────────────────────────────────
+        _bg_plot    = "#1c2128"
+        _text_plot  = "#8b949e"
+        _grid_plot  = "#21262d"
+        _line_plot  = "#30363d"
+        _title_plot = "#e6edf3"
+        _trace_plot = "#58a6ff"
+        _fill_color = "rgba(88,166,255,0.08)"
+
+        _layout_base = dict(
+            plot_bgcolor=_bg_plot,
+            paper_bgcolor=_bg_plot,
+            margin=dict(l=0, r=0, t=40, b=0),
+            height=290,
+            xaxis=dict(
+                showgrid=False,
+                linecolor=_line_plot,
+                color=_text_plot,
+                tickfont=dict(size=10),
+                type="date",
+                title=None,
+                nticks=7,
+                tickformatstops=[
+                    dict(dtickrange=[None, 86400000 * 3],  value="%d/%m/%Y"),
+                    dict(dtickrange=[86400000 * 3, "M1"],  value="%d/%m/%Y"),
+                    dict(dtickrange=["M1", "M12"],         value="%b %Y"),
+                    dict(dtickrange=["M12", None],         value="%Y"),
+                ],
+            ),
+            yaxis=dict(
+                gridcolor=_grid_plot,
+                linecolor=_line_plot,
+                color=_text_plot,
+                tickfont=dict(size=10),
+            ),
+            font=dict(family="Inter, Segoe UI, system-ui, sans-serif", color=_text_plot),
+            hoverlabel=dict(bgcolor=_bg_plot, font_color=_title_plot),
+        )
+
+        # ── Histórico armazenado (2 anos) — padrão pré-coleta ──
+        df_hist_stored = carregar_historico_empresa(ticker_sel)
+        if not df_hist_stored.empty and not df_emp.empty:
+            snap_min = df_emp["data"].min()
+            df_pre = df_hist_stored[df_hist_stored["data"] < snap_min][["data", "market_cap_bi"]]
+            df_cap_base = (
+                pd.concat([df_pre, df_emp[["data", "market_cap_bi"]]])
+                .sort_values("data")
+                .reset_index(drop=True)
+            )
+            fonte_default = (
+                f"histórico armazenado + coleta desde {snap_min.strftime('%d/%m/%Y')}"
+            )
+        elif not df_hist_stored.empty:
+            df_cap_base  = df_hist_stored[["data", "market_cap_bi"]].copy()
+            fonte_default = "histórico armazenado (2 anos)"
+        else:
+            df_cap_base  = df_emp[["data", "market_cap_bi"]].copy()
+            fonte_default = "snapshots Supabase (desde o início da coleta)"
+
+        # ── Botão: histórico completo via yfinance ──────────────
+        _hist_key = f"hist_full_{ticker_sel}"
+
+        if _yf_ok:
+            btn_col, status_col = st.columns([3, 4])
+            with btn_col:
+                if st.button(
+                    "Carregar histórico completo (desde 2000)",
+                    key=f"btn_hist_{ticker_sel}",
+                    use_container_width=True,
+                ):
+                    with st.spinner(f"Buscando histórico de {empresa_sel} via yfinance..."):
+                        try:
+                            tk_yf   = yf.Ticker(ticker_sel)
+                            info_yf = tk_yf.info
+                            shares  = (
+                                info_yf.get("sharesOutstanding")
+                                or info_yf.get("impliedSharesOutstanding")
+                            )
+                            hist_raw = tk_yf.history(period="max", auto_adjust=True)
+                            if not hist_raw.empty:
+                                # Remove timezone para compatibilidade com pandas
+                                if hist_raw.index.tz is not None:
+                                    hist_raw.index = hist_raw.index.tz_convert(None)
+                                df_yf = hist_raw[["Close"]].rename(columns={"Close": "preco"})
+                                if shares:
+                                    df_yf["market_cap_bi"] = df_yf["preco"] * float(shares) / 1e9
+                                else:
+                                    df_yf["market_cap_bi"] = None
+                                df_yf.index.name = "data"
+                                st.session_state[_hist_key] = df_yf
+                            else:
+                                st.warning("yfinance não retornou dados históricos.")
+                        except Exception as exc:
+                            st.error(f"Erro ao buscar histórico: {exc}")
+
+            with status_col:
+                df_yf_cached = st.session_state.get(_hist_key)
+                if df_yf_cached is not None and not df_yf_cached.empty:
+                    anos = max(1, (df_yf_cached.index[-1] - df_yf_cached.index[0]).days // 365)
+                    st.caption(
+                        f"yfinance: {df_yf_cached.index[0].strftime('%Y')} → "
+                        f"{df_yf_cached.index[-1].strftime('%Y')} "
+                        f"({anos} anos, {len(df_yf_cached):,} pontos)"
+                    )
+
+        # ── Gráficos ────────────────────────────────────────────
+        ce1, ce2 = st.columns(2)
+
+        with ce1:
+            fig_rank = go.Figure(go.Scatter(
+                x=df_emp["data"],
+                y=df_emp["rank"],
+                mode="lines+markers",
+                line=dict(color=_trace_plot, width=2),
+                marker=dict(size=4, color=_trace_plot),
+                hovertemplate="<b>%{x|%d/%m/%Y}</b><br>Posição: %{y}<extra></extra>",
+            ))
+            fig_rank.update_layout(
+                title=dict(
+                    text=f"Posição no ranking — {empresa_sel}",
+                    font=dict(size=11, color=_title_plot),
+                ),
+                **_layout_base,
+            )
+            fig_rank.update_yaxes(
+                autorange="reversed",
+                title_text="Posição",
+                title_font=dict(size=9, color=_text_plot),
+            )
+            st.plotly_chart(fig_rank, use_container_width=True)
+
+        with ce2:
+            df_yf_cached = st.session_state.get(_hist_key)
+            if df_yf_cached is not None and not df_yf_cached.empty:
+                x_cap  = df_yf_cached.index
+                y_cap  = df_yf_cached["market_cap_bi"]
+                fonte  = f"yfinance — desde {df_yf_cached.index[0].strftime('%Y')}"
+                mode   = "lines"
+            else:
+                x_cap  = df_cap_base["data"]
+                y_cap  = df_cap_base["market_cap_bi"]
+                fonte  = fonte_default
+                mode   = "lines"
+
+            fig_cap = go.Figure(go.Scatter(
+                x=x_cap,
+                y=y_cap,
+                mode=mode,
+                line=dict(color=_trace_plot, width=2),
+                fill="tozeroy",
+                fillcolor=_fill_color,
+                hovertemplate="<b>%{x|%d/%m/%Y}</b><br>US$ %{y:,.1f} bi<extra></extra>",
+            ))
+            fig_cap.update_layout(
+                title=dict(
+                    text=f"Market Cap — {empresa_sel}",
+                    font=dict(size=11, color=_title_plot),
+                ),
+                **_layout_base,
+            )
+            fig_cap.update_yaxes(
+                title_text="US$ bi",
+                title_font=dict(size=9, color=_text_plot),
+            )
+            st.plotly_chart(fig_cap, use_container_width=True)
+            _cap_clr = "#8b949e"
+            st.markdown(
+                f'<p style="font-size:.62rem;color:{_cap_clr};margin-top:-12px;">'
+                f"Fonte: {fonte}</p>",
+                unsafe_allow_html=True,
+            )
+
+
+# ── Rodapé ────────────────────────────────────────────────────
+_ft_border = "#30363d"
+_ft_color  = "#8b949e"
+st.markdown(
+    f'<div style="text-align:center;font-size:.65rem;color:{_ft_color};'
+    f'margin-top:2.5rem;padding-top:.75rem;border-top:1px solid {_ft_border};">'
+    "Universo: empresas globais com market cap &gt; US$ 50 bilhões"
+    "</div>",
+    unsafe_allow_html=True,
+)
