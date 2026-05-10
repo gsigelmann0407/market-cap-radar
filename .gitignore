@@ -1,0 +1,17 @@
+# Certificado corporativo (não vai para o repo)
+empresa.pem
+
+# Logs locais
+coleta.log
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Variáveis de ambiente locais
+.env
+.env.local

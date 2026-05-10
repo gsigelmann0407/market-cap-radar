@@ -1,0 +1,30 @@
+name: Coleta diária — Market Cap Radar
+
+on:
+  schedule:
+    - cron: '0 10 * * *'   # 10:00 UTC = 07:00 BRT
+  workflow_dispatch:         # permite disparar manualmente pelo GitHub
+
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Instalar dependências
+        run: pip install requests beautifulsoup4 lxml yfinance pandas
+
+      - name: Rodar coletor
+        run: python coletor_yfinance.py
