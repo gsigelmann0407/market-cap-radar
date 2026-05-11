@@ -8,13 +8,13 @@ import os
 # --- Supabase (banco de dados na nuvem) ---------------------
 # Em produção (GitHub Actions): definir como GitHub Secrets
 # Localmente: fallback para os valores abaixo
-SUPABASE_URL = os.environ.get(
-    "SUPABASE_URL",
-    "https://axaxmlqlynkzcfifvznz.supabase.co",
+SUPABASE_URL = (
+    os.environ.get("SUPABASE_URL")
+    or "https://axaxmlqlynkzcfifvznz.supabase.co"
 )
-SUPABASE_KEY = os.environ.get(
-    "SUPABASE_KEY",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF4YXhtbHFseW5remNmaWZ2em56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNjE1MzksImV4cCI6MjA5MzkzNzUzOX0.RpoGkgYP9LSFx8UxibDF80MQ5JJM8E8241cW3goR7hA",
+SUPABASE_KEY = (
+    os.environ.get("SUPABASE_KEY")
+    or "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF4YXhtbHFseW5remNmaWZ2em56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNjE1MzksImV4cCI6MjA5MzkzNzUzOX0.RpoGkgYP9LSFx8UxibDF80MQ5JJM8E8241cW3goR7hA"
 )
 
 
