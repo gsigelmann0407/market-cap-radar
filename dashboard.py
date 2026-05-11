@@ -247,19 +247,51 @@ def calcular_movimentacoes(
     return entradas, saidas
 
 
-def fmt_delta(v) -> str:
+def fmt_delta(v, salto: int = 20) -> str:
     if pd.isna(v): return "n/d"
     v = int(v)
-    if v == 0:   return "—"
-    if v >= 20:  return f"▲▲ +{v}"
-    if v > 0:    return f"▲ +{v}"
-    if v <= -20: return f"▼▼ {v}"
+    if v == 0:       return "—"
+    if v >= salto:   return f"▲▲ +{v}"
+    if v > 0:        return f"▲ +{v}"
+    if v <= -salto:  return f"▼▼ {v}"
     return f"▼ {v}"
 
 
 def fmt_pct(v) -> str:
     if pd.isna(v): return "—"
     return f"{float(v):+.2f}%"
+
+
+def _destaques_html(df_sub: pd.DataFrame, tipo: str, salto: int) -> str:
+    if df_sub.empty:
+        return (
+            '<p style="font-size:.78rem;color:#94a3b8;padding:8px 0 4px;">'
+            f"Nenhuma empresa com variação ≥ {salto} posições."
+            "</p>"
+        )
+    cls = "badge-in" if tipo == "up" else "badge-out"
+    rows = ""
+    for _, r in df_sub.iterrows():
+        nome   = str(r.get("nome",   "—") or "—")[:30]
+        ticker = str(r.get("ticker", "—") or "—")
+        setor  = str(r.get("setor",  "—") or "—")[:20]
+        rank   = int(r["rank"]) if pd.notna(r.get("rank")) else "—"
+        delta  = int(r["delta_rank"])
+        dstr   = f"▲ +{delta}" if delta > 0 else f"▼ {delta}"
+        rows += (
+            f"<tr>"
+            f'<td style="color:#8b949e;font-size:.72rem">{rank}</td>'
+            f"<td><strong>{nome}</strong></td>"
+            f'<td style="color:#64748b">{ticker}</td>'
+            f'<td style="color:#94a3b8;font-size:.72rem">{setor}</td>'
+            f'<td><span class="{cls}">{dstr}</span></td>'
+            f"</tr>"
+        )
+    return (
+        '<table class="mov-tbl"><thead><tr>'
+        "<th>Pos.</th><th>Empresa</th><th>Ticker</th><th>Setor</th><th>Variação</th>"
+        f"</tr></thead><tbody>{rows}</tbody></table>"
+    )
 
 
 def _mov_html(df_mov: pd.DataFrame, tipo: str) -> str:
@@ -350,7 +382,7 @@ st.markdown(f"""
 
 
 # ── 2. Filtros ─────────────────────────────────────────────────
-fc1, fc2, fc3, fc4 = st.columns([1, 2, 2, 1])
+fc1, fc2, fc3, fc4, fc5 = st.columns([1, 1.5, 1.5, 1, 1])
 with fc1:
     janela = st.selectbox(
         "Período",
@@ -370,6 +402,13 @@ with fc4:
         format_func=lambda x: "Todas" if x == 500 else f"Top {x}",
         index=0,
     )
+with fc5:
+    salto_min = st.selectbox(
+        "Salto mínimo",
+        options=[5, 10, 20, 30, 50],
+        index=2,
+        format_func=lambda x: f"≥ {x} pos.",
+    )
 
 
 # ── 3. Rank velocity + filtros ─────────────────────────────────
@@ -385,9 +424,9 @@ df_vel = df_vel.sort_values("rank").head(top_n)
 
 # ── 4. KPIs ────────────────────────────────────────────────────
 n_total  = len(df_vel)
-dr_serie = df_vel["delta_rank"].fillna(0)
-n_up     = int(dr_serie.gt(0).sum())
-n_down   = int(dr_serie.lt(0).sum())
+dr_serie = df_vel["delta_rank"]
+n_up     = int(dr_serie.ge(salto_min).sum())
+n_down   = int(dr_serie.le(-salto_min).sum())
 n_nd     = int(df_vel["delta_rank"].isna().sum())
 pct_up   = f"{n_up   / n_total * 100:.0f}%" if n_total else "—"
 pct_down = f"{n_down / n_total * 100:.0f}%" if n_total else "—"
@@ -396,12 +435,12 @@ nd_info  = f"{n_nd} ag. histórico" if n_nd else f"{n_universo} monitoradas"
 st.markdown(f"""
 <div class="kpi-strip">
   <div class="kpi">
-    <div class="kpi-l">Subiram de posição</div>
+    <div class="kpi-l">Subiram ≥ {salto_min} posições</div>
     <div class="kpi-v kup">{n_up:,}</div>
     <div class="kpi-d">{pct_up} do filtro</div>
   </div>
   <div class="kpi">
-    <div class="kpi-l">Caíram de posição</div>
+    <div class="kpi-l">Caíram ≥ {salto_min} posições</div>
     <div class="kpi-v kdown">{n_down:,}</div>
     <div class="kpi-d">{pct_down} do filtro</div>
   </div>
@@ -412,6 +451,32 @@ st.markdown(f"""
   </div>
 </div>
 """, unsafe_allow_html=True)
+
+
+# ── 4b. Destaques do período ───────────────────────────────────
+st.markdown(
+    '<div class="sec" style="margin-top:0.4rem;">Destaques do período</div>',
+    unsafe_allow_html=True,
+)
+
+dest_up   = df_vel[df_vel["delta_rank"] >= salto_min].sort_values("delta_rank", ascending=False).head(10)
+dest_down = df_vel[df_vel["delta_rank"] <= -salto_min].sort_values("delta_rank").head(10)
+
+dc1, dc2 = st.columns(2)
+with dc1:
+    st.markdown(
+        f'<div class="sec-sub">Maiores subidas'
+        f'&nbsp;<span style="color:#16a34a;font-weight:700">+{len(dest_up)}</span></div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(_destaques_html(dest_up, "up", salto_min), unsafe_allow_html=True)
+with dc2:
+    st.markdown(
+        f'<div class="sec-sub">Maiores quedas'
+        f'&nbsp;<span style="color:#dc2626;font-weight:700">-{len(dest_down)}</span></div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(_destaques_html(dest_down, "down", salto_min), unsafe_allow_html=True)
 
 
 # ── 5. Tabela principal ────────────────────────────────────────
@@ -430,7 +495,7 @@ raw = df_vel[[
 
 _delta_vals = raw["delta_rank"].to_list()
 
-raw[col_delta]          = raw["delta_rank"].apply(fmt_delta)
+raw[col_delta]          = raw["delta_rank"].apply(lambda v: fmt_delta(v, salto_min))
 raw["Var. dia"]         = raw["variacao_dia_pct"].apply(fmt_pct)
 raw[col_var_mkt]        = raw["var_mktcap_pct"].apply(fmt_pct)
 raw["Mkt Cap (US$ bi)"] = raw["market_cap_bi"].apply(
@@ -456,7 +521,7 @@ st.markdown(
     f"&nbsp;&nbsp;|&nbsp;&nbsp;"
     f'<span style="color:#14532d;font-weight:700">▲▲ / </span>'
     f'<span style="color:#991b1b;font-weight:700">▼▼</span>'
-    f"&nbsp;saltos >= 20 posicoes</div>",
+    f"&nbsp;saltos >= {salto_min} posicoes</div>",
     unsafe_allow_html=True,
 )
 
@@ -490,9 +555,9 @@ def _row_style(row):
     except (IndexError, TypeError, ValueError):
         return [""] * len(row)
 
-    if dr >= 20:
+    if dr >= salto_min:
         return ["background-color: #14532d; color: #86efac; font-weight: 700"] * len(row)
-    if dr <= -20:
+    if dr <= -salto_min:
         return ["background-color: #7f1d1d; color: #fca5a5; font-weight: 700"] * len(row)
 
     styles = [""] * len(row)
