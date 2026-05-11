@@ -57,16 +57,31 @@ html, body, [class*="css"] {
 [data-testid="stWidgetLabel"] p,
 [data-testid="stText"] p { color: #e6edf3 !important; }
 
-/* Selectbox */
+/* Selectbox — fundo e texto (incluindo valor selecionado) */
 [data-baseweb="select"] > div {
     background-color: #1c2128 !important;
     border-color: #30363d !important;
 }
-[data-baseweb="select"] span { color: #e6edf3 !important; }
+[data-baseweb="select"] span,
+[data-baseweb="select"] div,
+[data-baseweb="select"] input,
+[data-testid="stSelectbox"] * { color: #e6edf3 !important; }
 [data-baseweb="popover"],
 [data-baseweb="menu"] { background-color: #1c2128 !important; }
 [data-baseweb="menu"] li { color: #e6edf3 !important; }
 [data-baseweb="menu"] li:hover { background-color: #21262d !important; }
+
+/* Search bar — dark mode */
+[data-testid="stTextInput"] > div {
+    background-color: #1c2128 !important;
+    border-color: #30363d !important;
+}
+[data-testid="stTextInput"] input {
+    background-color: #1c2128 !important;
+    color: #e6edf3 !important;
+    caret-color: #e6edf3 !important;
+}
+[data-testid="stTextInput"] input::placeholder { color: #8b949e !important; }
 
 /* Botão */
 [data-testid="stButton"] > button {
@@ -109,7 +124,7 @@ hr { border-color: #30363d !important; }
 .sec {
     font-size: 1rem; letter-spacing: .08em; text-transform: uppercase;
     color: #e6edf3; font-weight: 700; padding: 7px 0 7px 12px;
-    border-left: 3px solid #58a6ff; margin-bottom: 10px;
+    border-left: 3px solid #00e676; margin-bottom: 10px;
 }
 .sec-sub {
     font-size: .82rem; letter-spacing: .07em; text-transform: uppercase;
@@ -269,27 +284,43 @@ def _destaques_html(df_sub: pd.DataFrame, tipo: str, salto: int) -> str:
             f"Nenhuma empresa com variação ≥ {salto} posições."
             "</p>"
         )
-    cls = "badge-in" if tipo == "up" else "badge-out"
+    cls        = "badge-in" if tipo == "up" else "badge-out"
+    mkt_color  = "#3fb950" if tipo == "up" else "#f85149"
     rows = ""
     for _, r in df_sub.iterrows():
-        nome   = str(r.get("nome",   "—") or "—")[:30]
-        ticker = str(r.get("ticker", "—") or "—")
-        setor  = str(r.get("setor",  "—") or "—")[:20]
-        rank   = int(r["rank"]) if pd.notna(r.get("rank")) else "—"
-        delta  = int(r["delta_rank"])
-        dstr   = f"▲ +{delta}" if delta > 0 else f"▼ {delta}"
+        nome       = str(r.get("nome",   "—") or "—")[:28]
+        ticker     = str(r.get("ticker", "—") or "—")
+        rank       = int(r["rank"]) if pd.notna(r.get("rank")) else "—"
+        delta      = int(r["delta_rank"])
+        dstr       = f"▲ +{delta}" if delta > 0 else f"▼ {delta}"
+        mkt_dep    = r.get("market_cap_bi")
+        mkt_ant    = r.get("mktcap_antes")
+        if pd.notna(mkt_dep) and pd.notna(mkt_ant) and mkt_ant:
+            diff     = mkt_dep - mkt_ant
+            pct      = diff / mkt_ant * 100
+            sign     = "+" if diff >= 0 else ""
+            mkt_cell = (
+                f'<span style="color:#8b949e">${mkt_ant:,.0f}bi</span>'
+                f' → <strong>${mkt_dep:,.0f}bi</strong><br>'
+                f'<span style="color:{mkt_color};font-size:.68rem">'
+                f"{sign}${diff:,.0f}bi&nbsp;({sign}{pct:.1f}%)</span>"
+            )
+        elif pd.notna(mkt_dep):
+            mkt_cell = f"<strong>${mkt_dep:,.0f}bi</strong>"
+        else:
+            mkt_cell = "—"
         rows += (
             f"<tr>"
             f'<td style="color:#8b949e;font-size:.72rem">{rank}</td>'
-            f"<td><strong>{nome}</strong></td>"
-            f'<td style="color:#64748b">{ticker}</td>'
-            f'<td style="color:#94a3b8;font-size:.72rem">{setor}</td>'
+            f"<td><strong>{nome}</strong><br>"
+            f'<span style="color:#64748b;font-size:.68rem">{ticker}</span></td>'
+            f"<td>{mkt_cell}</td>"
             f'<td><span class="{cls}">{dstr}</span></td>'
             f"</tr>"
         )
     return (
         '<table class="mov-tbl"><thead><tr>'
-        "<th>Pos.</th><th>Empresa</th><th>Ticker</th><th>Setor</th><th>Variação</th>"
+        "<th>Pos.</th><th>Empresa</th><th>Mkt Cap (antes → depois)</th><th>Δ Rank</th>"
         f"</tr></thead><tbody>{rows}</tbody></table>"
     )
 
@@ -480,24 +511,22 @@ with dc2:
 
 
 # ── 5. Tabela principal ────────────────────────────────────────
-col_delta   = f"Δ Ranking ({janela}d)"
-col_var_mkt = f"Var. MktCap ({janela}d)"
+col_delta = f"Δ Ranking ({janela}d)"
 
-for _col in ["preco", "var_mktcap_pct", "setor", "pais"]:
+for _col in ["preco", "setor", "pais"]:
     if _col not in df_vel.columns:
         df_vel = df_vel.copy()
         df_vel[_col] = None
 
 raw = df_vel[[
     "rank", "nome", "ticker", "setor", "pais",
-    "market_cap_bi", "preco", "variacao_dia_pct", "delta_rank", "var_mktcap_pct",
+    "market_cap_bi", "preco", "variacao_dia_pct", "delta_rank",
 ]].copy().reset_index(drop=True)
 
 _delta_vals = raw["delta_rank"].to_list()
 
 raw[col_delta]          = raw["delta_rank"].apply(lambda v: fmt_delta(v, salto_min))
 raw["Var. dia"]         = raw["variacao_dia_pct"].apply(fmt_pct)
-raw[col_var_mkt]        = raw["var_mktcap_pct"].apply(fmt_pct)
 raw["Mkt Cap (US$ bi)"] = raw["market_cap_bi"].apply(
     lambda v: f"{v:,.1f}" if pd.notna(v) else "—"
 )
@@ -507,7 +536,7 @@ raw["Preco (USD)"] = raw["preco"].apply(
 
 tabela = raw[[
     "rank", "nome", "ticker", "setor", "pais",
-    "Mkt Cap (US$ bi)", "Preco (USD)", "Var. dia", col_var_mkt, col_delta,
+    "Mkt Cap (US$ bi)", "Preco (USD)", "Var. dia", col_delta,
 ]].rename(columns={
     "rank":   "Pos.",
     "nome":   "Empresa",
