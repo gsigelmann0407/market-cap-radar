@@ -320,6 +320,36 @@ def enriquecer_setores(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+# ── Deduplicação — evita coletas duplicadas ───────────────────
+
+def _ja_coletou_recentemente(horas: int = 4) -> bool:
+    """
+    Retorna True se já houve coleta bem-sucedida nas últimas `horas` horas.
+    Usa o campo created_at que o Supabase adiciona automaticamente.
+    Se a consulta falhar por qualquer motivo, retorna False (fail-open).
+    """
+    from datetime import datetime, timezone, timedelta
+    cutoff = (datetime.now(timezone.utc) - timedelta(hours=horas)).isoformat()
+    url = (
+        f"{SUPABASE_URL}/rest/v1/snapshots"
+        f"?select=created_at"
+        f"&created_at=gte.{cutoff}"
+        f"&limit=1"
+    )
+    headers = {
+        "apikey":        SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Accept":        "application/json",
+    }
+    try:
+        resp = _sess.get(url, headers=headers, timeout=10)
+        if resp.ok and resp.json():
+            return True
+    except Exception:
+        pass
+    return False
+
+
 # ── Supabase ─────────────────────────────────────────────────
 
 _COLUNAS = [
@@ -516,6 +546,11 @@ def main():
     log.info("=" * 55)
     log.info(f"  COLETA INICIADA — {date.today().isoformat()}")
     log.info("=" * 55)
+
+    if _ja_coletou_recentemente(horas=4):
+        log.info("Coleta ja realizada nas ultimas 4 horas. Pulando execucao.")
+        log.info("=" * 55)
+        sys.exit(0)
 
     try:
         df = scrape_top500()
