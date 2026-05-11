@@ -29,7 +29,7 @@ BLOOMBERG_TOP_N    = 500
 HORARIO_COLETA = "07:00"
 
 # Períodos para cálculo de rank velocity (em dias úteis)
-JANELAS_DIAS = [7, 30, 90]
+JANELAS_DIAS = [1, 7, 14, 30, 60, 90]
 
 # Moeda de referência para market cap
 MOEDA_BASE = "USD"

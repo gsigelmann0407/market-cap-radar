@@ -381,13 +381,15 @@ df_vel = df_vel.sort_values("rank").head(top_n)
 
 
 # ── 4. KPIs ────────────────────────────────────────────────────
-n_total  = len(df_vel)
-dr_serie = df_vel["delta_rank"].fillna(0)
-n_up     = int(dr_serie.gt(0).sum())
-n_down   = int(dr_serie.lt(0).sum())
-n_flat   = n_total - n_up - n_down
-pct_up   = f"{n_up   / n_total * 100:.0f}%" if n_total else "—"
-pct_down = f"{n_down / n_total * 100:.0f}%" if n_total else "—"
+n_total     = len(df_vel)
+dr_serie    = df_vel["delta_rank"].fillna(0)
+n_up        = int(dr_serie.gt(0).sum())
+n_down      = int(dr_serie.lt(0).sum())
+n_nd        = int(df_vel["delta_rank"].isna().sum())
+n_flat      = n_total - n_up - n_down - n_nd
+pct_up      = f"{n_up   / n_total * 100:.0f}%" if n_total else "—"
+pct_down    = f"{n_down / n_total * 100:.0f}%" if n_total else "—"
+nd_sub      = f"{n_flat} inalteradas" if n_flat else "&nbsp;"
 
 st.markdown(f"""
 <div class="kpi-strip">
@@ -402,9 +404,9 @@ st.markdown(f"""
     <div class="kpi-d">{pct_down} do filtro</div>
   </div>
   <div class="kpi">
-    <div class="kpi-l">Inalteradas / n/d</div>
-    <div class="kpi-v">{n_flat:,}</div>
-    <div class="kpi-d">&nbsp;</div>
+    <div class="kpi-l">Aguardando histórico</div>
+    <div class="kpi-v">{n_nd:,}</div>
+    <div class="kpi-d">{nd_sub}</div>
   </div>
   <div class="kpi">
     <div class="kpi-l">Empresas no filtro</div>
@@ -526,7 +528,7 @@ with mc2:
 
 # ── 7. Evolução de empresa ─────────────────────────────────────
 st.markdown(
-    '<div class="sec" style="margin-top:1.5rem;">Evolução por empresa</div>',
+    '<div class="sec" style="margin-top:1.5rem;">Evolução por empresa — Market Cap</div>',
     unsafe_allow_html=True,
 )
 
@@ -534,27 +536,36 @@ empresas_lista = sorted(hoje_df["nome"].dropna().unique().tolist())
 if not empresas_lista:
     st.info("Nenhuma empresa disponivel para analise de evolucao.")
 else:
-    empresa_sel = st.selectbox("Empresa", empresas_lista, label_visibility="collapsed")
+    empresas_sel = st.multiselect(
+        "Empresas",
+        options=empresas_lista,
+        default=empresas_lista[:1],
+        label_visibility="collapsed",
+        placeholder="Selecione uma ou mais empresas para comparar...",
+    )
 
-    match = hoje_df[hoje_df["nome"] == empresa_sel]["ticker"]
-    if not match.empty:
-        ticker_sel = match.values[0]
-        df_emp     = df[df["ticker"] == ticker_sel].sort_values("data")
-
+    if not empresas_sel:
+        st.info("Selecione ao menos uma empresa para visualizar o grafico.")
+    else:
         # ── Paleta dark ─────────────────────────────────────────
         _bg_plot    = "#1c2128"
         _text_plot  = "#8b949e"
         _grid_plot  = "#21262d"
         _line_plot  = "#30363d"
         _title_plot = "#e6edf3"
-        _trace_plot = "#58a6ff"
-        _fill_color = "rgba(88,166,255,0.08)"
+
+        _CORES = ["#58a6ff", "#3fb950", "#f85149", "#d2a8ff", "#ffa657", "#79c0ff", "#7ee787"]
+        _FILLS = [
+            "rgba(88,166,255,0.08)", "rgba(63,185,80,0.08)", "rgba(248,81,73,0.08)",
+            "rgba(210,168,255,0.08)", "rgba(255,166,87,0.08)", "rgba(121,192,255,0.08)",
+            "rgba(126,231,135,0.08)",
+        ]
 
         _layout_base = dict(
             plot_bgcolor=_bg_plot,
             paper_bgcolor=_bg_plot,
             margin=dict(l=0, r=0, t=40, b=0),
-            height=290,
+            height=360,
             xaxis=dict(
                 showgrid=False,
                 linecolor=_line_plot,
@@ -578,140 +589,132 @@ else:
             ),
             font=dict(family="Inter, Segoe UI, system-ui, sans-serif", color=_text_plot),
             hoverlabel=dict(bgcolor=_bg_plot, font_color=_title_plot),
+            legend=dict(
+                font=dict(size=10, color=_text_plot),
+                bgcolor="transparent",
+                orientation="h",
+                yanchor="bottom", y=1.02, xanchor="left", x=0,
+            ),
         )
 
-        # ── Histórico armazenado (2 anos) — padrão pré-coleta ──
-        df_hist_stored = carregar_historico_empresa(ticker_sel)
-        if not df_hist_stored.empty and not df_emp.empty:
-            snap_min = df_emp["data"].min()
-            df_pre = df_hist_stored[df_hist_stored["data"] < snap_min][["data", "market_cap_bi"]]
-            df_cap_base = (
-                pd.concat([df_pre, df_emp[["data", "market_cap_bi"]]])
-                .sort_values("data")
-                .reset_index(drop=True)
-            )
-            fonte_default = (
-                f"histórico armazenado + coleta desde {snap_min.strftime('%d/%m/%Y')}"
-            )
-        elif not df_hist_stored.empty:
-            df_cap_base  = df_hist_stored[["data", "market_cap_bi"]].copy()
-            fonte_default = "histórico armazenado (2 anos)"
-        else:
-            df_cap_base  = df_emp[["data", "market_cap_bi"]].copy()
-            fonte_default = "snapshots Supabase (desde o início da coleta)"
-
-        # ── Botão: histórico completo via yfinance ──────────────
-        _hist_key = f"hist_full_{ticker_sel}"
-
-        if _yf_ok:
-            btn_col, status_col = st.columns([3, 4])
-            with btn_col:
-                if st.button(
-                    "Carregar histórico completo (desde 2000)",
-                    key=f"btn_hist_{ticker_sel}",
-                    use_container_width=True,
-                ):
-                    with st.spinner(f"Buscando histórico de {empresa_sel} via yfinance..."):
-                        try:
-                            tk_yf   = yf.Ticker(ticker_sel)
-                            info_yf = tk_yf.info
-                            shares  = (
-                                info_yf.get("sharesOutstanding")
-                                or info_yf.get("impliedSharesOutstanding")
-                            )
-                            hist_raw = tk_yf.history(period="max", auto_adjust=True)
-                            if not hist_raw.empty:
-                                # Remove timezone para compatibilidade com pandas
-                                if hist_raw.index.tz is not None:
-                                    hist_raw.index = hist_raw.index.tz_convert(None)
-                                df_yf = hist_raw[["Close"]].rename(columns={"Close": "preco"})
-                                if shares:
-                                    df_yf["market_cap_bi"] = df_yf["preco"] * float(shares) / 1e9
+        # ── Botão yfinance (só com 1 empresa selecionada) ────────
+        if len(empresas_sel) == 1 and _yf_ok:
+            _emp1  = empresas_sel[0]
+            _match = hoje_df[hoje_df["nome"] == _emp1]["ticker"]
+            if not _match.empty:
+                _tick1    = _match.values[0]
+                _hist_key = f"hist_full_{_tick1}"
+                btn_col, status_col = st.columns([3, 4])
+                with btn_col:
+                    if st.button(
+                        "Carregar histórico completo (desde 2000)",
+                        key=f"btn_hist_{_tick1}",
+                        use_container_width=True,
+                    ):
+                        with st.spinner(f"Buscando histórico de {_emp1} via yfinance..."):
+                            try:
+                                tk_yf   = yf.Ticker(_tick1)
+                                info_yf = tk_yf.info
+                                shares  = (
+                                    info_yf.get("sharesOutstanding")
+                                    or info_yf.get("impliedSharesOutstanding")
+                                )
+                                hist_raw = tk_yf.history(period="max", auto_adjust=True)
+                                if not hist_raw.empty:
+                                    if hist_raw.index.tz is not None:
+                                        hist_raw.index = hist_raw.index.tz_convert(None)
+                                    df_yf = hist_raw[["Close"]].rename(columns={"Close": "preco"})
+                                    if shares:
+                                        df_yf["market_cap_bi"] = df_yf["preco"] * float(shares) / 1e9
+                                    else:
+                                        df_yf["market_cap_bi"] = None
+                                    df_yf.index.name = "data"
+                                    st.session_state[_hist_key] = df_yf
                                 else:
-                                    df_yf["market_cap_bi"] = None
-                                df_yf.index.name = "data"
-                                st.session_state[_hist_key] = df_yf
-                            else:
-                                st.warning("yfinance não retornou dados históricos.")
-                        except Exception as exc:
-                            st.error(f"Erro ao buscar histórico: {exc}")
+                                    st.warning("yfinance nao retornou dados historicos.")
+                            except Exception as exc:
+                                st.error(f"Erro ao buscar historico: {exc}")
+                with status_col:
+                    _df_yf_c = st.session_state.get(_hist_key)
+                    if _df_yf_c is not None and not _df_yf_c.empty:
+                        anos = max(1, (_df_yf_c.index[-1] - _df_yf_c.index[0]).days // 365)
+                        st.caption(
+                            f"yfinance: {_df_yf_c.index[0].strftime('%Y')} - "
+                            f"{_df_yf_c.index[-1].strftime('%Y')} "
+                            f"({anos} anos, {len(_df_yf_c):,} pontos)"
+                        )
 
-            with status_col:
-                df_yf_cached = st.session_state.get(_hist_key)
-                if df_yf_cached is not None and not df_yf_cached.empty:
-                    anos = max(1, (df_yf_cached.index[-1] - df_yf_cached.index[0]).days // 365)
-                    st.caption(
-                        f"yfinance: {df_yf_cached.index[0].strftime('%Y')} → "
-                        f"{df_yf_cached.index[-1].strftime('%Y')} "
-                        f"({anos} anos, {len(df_yf_cached):,} pontos)"
-                    )
+        # ── Gráfico de Market Cap (multi-empresa) ─────────────
+        fig_cap = go.Figure()
+        fontes: list[str] = []
+        solo = len(empresas_sel) == 1
 
-        # ── Gráficos ────────────────────────────────────────────
-        ce1, ce2 = st.columns(2)
+        for i, empresa in enumerate(empresas_sel):
+            cor  = _CORES[i % len(_CORES)]
+            fill = _FILLS[i % len(_FILLS)]
 
-        with ce1:
-            fig_rank = go.Figure(go.Scatter(
-                x=df_emp["data"],
-                y=df_emp["rank"],
-                mode="lines+markers",
-                line=dict(color=_trace_plot, width=2),
-                marker=dict(size=4, color=_trace_plot),
-                hovertemplate="<b>%{x|%d/%m/%Y}</b><br>Posição: %{y}<extra></extra>",
-            ))
-            fig_rank.update_layout(
-                title=dict(
-                    text=f"Posição no ranking — {empresa_sel}",
-                    font=dict(size=11, color=_title_plot),
-                ),
-                **_layout_base,
-            )
-            fig_rank.update_yaxes(
-                autorange="reversed",
-                title_text="Posição",
-                title_font=dict(size=9, color=_text_plot),
-            )
-            st.plotly_chart(fig_rank, use_container_width=True)
+            match = hoje_df[hoje_df["nome"] == empresa]["ticker"]
+            if match.empty:
+                continue
+            ticker = match.values[0]
+            df_emp = df[df["ticker"] == ticker].sort_values("data")
 
-        with ce2:
-            df_yf_cached = st.session_state.get(_hist_key)
-            if df_yf_cached is not None and not df_yf_cached.empty:
-                x_cap  = df_yf_cached.index
-                y_cap  = df_yf_cached["market_cap_bi"]
-                fonte  = f"yfinance — desde {df_yf_cached.index[0].strftime('%Y')}"
-                mode   = "lines"
+            df_hist_stored = carregar_historico_empresa(ticker)
+            if not df_hist_stored.empty and not df_emp.empty:
+                snap_min = df_emp["data"].min()
+                df_pre   = df_hist_stored[df_hist_stored["data"] < snap_min][["data", "market_cap_bi"]]
+                df_cap   = (
+                    pd.concat([df_pre, df_emp[["data", "market_cap_bi"]]])
+                    .sort_values("data").reset_index(drop=True)
+                )
+                fonte = "historico + coleta"
+            elif not df_hist_stored.empty:
+                df_cap = df_hist_stored[["data", "market_cap_bi"]].copy()
+                fonte  = "historico 2 anos"
             else:
-                x_cap  = df_cap_base["data"]
-                y_cap  = df_cap_base["market_cap_bi"]
-                fonte  = fonte_default
-                mode   = "lines"
+                df_cap = df_emp[["data", "market_cap_bi"]].copy()
+                fonte  = "snapshots"
 
-            fig_cap = go.Figure(go.Scatter(
+            x_cap: object = df_cap["data"]
+            y_cap: object = df_cap["market_cap_bi"]
+
+            if solo:
+                _df_yf_c = st.session_state.get(f"hist_full_{ticker}")
+                if _df_yf_c is not None and not _df_yf_c.empty:
+                    x_cap = _df_yf_c.index
+                    y_cap = _df_yf_c["market_cap_bi"]
+                    fonte = f"yfinance desde {_df_yf_c.index[0].strftime('%Y')}"
+
+            fontes.append(fonte if solo else f"{empresa}: {fonte}")
+
+            fig_cap.add_trace(go.Scatter(
                 x=x_cap,
                 y=y_cap,
-                mode=mode,
-                line=dict(color=_trace_plot, width=2),
-                fill="tozeroy",
-                fillcolor=_fill_color,
-                hovertemplate="<b>%{x|%d/%m/%Y}</b><br>US$ %{y:,.1f} bi<extra></extra>",
-            ))
-            fig_cap.update_layout(
-                title=dict(
-                    text=f"Market Cap — {empresa_sel}",
-                    font=dict(size=11, color=_title_plot),
+                mode="lines",
+                name=empresa,
+                line=dict(color=cor, width=2),
+                fill="tozeroy" if solo else "none",
+                fillcolor=fill if solo else None,
+                hovertemplate=(
+                    f"<b>{empresa}</b><br>"
+                    "%{x|%d/%m/%Y}<br>US$ %{y:,.1f} bi<extra></extra>"
                 ),
-                **_layout_base,
-            )
-            fig_cap.update_yaxes(
-                title_text="US$ bi",
-                title_font=dict(size=9, color=_text_plot),
-            )
-            st.plotly_chart(fig_cap, use_container_width=True)
-            _cap_clr = "#8b949e"
-            st.markdown(
-                f'<p style="font-size:.62rem;color:{_cap_clr};margin-top:-12px;">'
-                f"Fonte: {fonte}</p>",
-                unsafe_allow_html=True,
-            )
+            ))
+
+        titulo = f"Market Cap — {empresas_sel[0]}" if solo else "Market Cap comparativo"
+        fig_cap.update_layout(
+            title=dict(text=titulo, font=dict(size=11, color=_title_plot)),
+            showlegend=not solo,
+            **_layout_base,
+        )
+        fig_cap.update_yaxes(title_text="US$ bi", title_font=dict(size=9, color=_text_plot))
+        st.plotly_chart(fig_cap, use_container_width=True)
+
+        st.markdown(
+            f'<p style="font-size:.62rem;color:#8b949e;margin-top:-12px;">'
+            f"Fonte: {' &nbsp;|&nbsp; '.join(fontes)}</p>",
+            unsafe_allow_html=True,
+        )
 
 
 # ── Rodapé ────────────────────────────────────────────────────

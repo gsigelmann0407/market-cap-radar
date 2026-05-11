@@ -2,7 +2,8 @@ name: Coleta diária — Market Cap Radar
 
 on:
   schedule:
-    - cron: '0 10 * * *'   # 10:00 UTC = 07:00 BRT
+    - cron: '0 14 * * *'   # 14:00 UTC = 11:00 BRT / 10:00 NY (abertura)
+    - cron: '0 21 * * *'   # 21:00 UTC = 18:00 BRT / 17:00 NY (fechamento)
   workflow_dispatch:         # permite disparar manualmente pelo GitHub
 
 jobs:
