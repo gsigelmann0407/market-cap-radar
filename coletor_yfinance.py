@@ -226,6 +226,14 @@ def scrape_top500() -> pd.DataFrame:
 
 # ── Setores — cache Supabase + yfinance só para novos ────────
 
+# Tickers sem suporte no Yahoo Finance (bolsas dos Emirados Árabes)
+_SETORES_FIXOS: dict[str, str] = {
+    "IHC.AE":      "Industrials",        # International Holding Company
+    "TAQA.AE":     "Utilities",          # Abu Dhabi National Energy
+    "ADNOCGAS.AE": "Energy",             # ADNOC Gas
+    "FAB.AE":      "Financial Services", # First Abu Dhabi Bank
+}
+
 def _setores_existentes() -> dict:
     """Retorna {ticker: setor} para todos os tickers que já têm setor salvo."""
     url = (
@@ -300,7 +308,15 @@ def enriquecer_setores(df: pd.DataFrame) -> pd.DataFrame:
         encontrados = sum(1 for s in novos.values() if s)
         log.info(f"  Setores novos: {encontrados}/{len(tickers_novos)} encontrados.")
 
-    df["setor"] = df["ticker"].map({**cache, **novos}).fillna("")
+    setor_final = {**cache, **novos}
+
+    # Aplica setores fixos para tickers sem suporte no Yahoo Finance
+    for ticker, setor in _SETORES_FIXOS.items():
+        if not setor_final.get(ticker):
+            setor_final[ticker] = setor
+            log.info(f"  Setor fixo: {ticker}: {setor}")
+
+    df["setor"] = df["ticker"].map(setor_final).fillna("")
     return df
 
 

@@ -97,7 +97,7 @@ hr { border-color: #30363d !important; }
 
 /* ─ KPI cards ──────────────────────────────────────────────── */
 .kpi-strip {
-    display: grid; grid-template-columns: repeat(4, 1fr);
+    display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 1px; background: #21262d; border: 1px solid #21262d;
     border-radius: 3px; margin-bottom: 1.1rem; overflow: hidden;
 }
@@ -366,7 +366,12 @@ with fc3:
     paises   = ["Todos os países"] + sorted(hoje_df["pais"].dropna().unique().tolist())
     pais_sel = st.selectbox("País", paises)
 with fc4:
-    top_n = st.selectbox("Top N", options=[25, 50, 100, 200, 500], index=1)
+    top_n = st.selectbox(
+        "Exibir",
+        options=[50, 100, 250, 500],
+        format_func=lambda x: "Todas" if x == 500 else f"Top {x}",
+        index=0,
+    )
 
 
 # ── 3. Rank velocity + filtros ─────────────────────────────────
@@ -381,15 +386,14 @@ df_vel = df_vel.sort_values("rank").head(top_n)
 
 
 # ── 4. KPIs ────────────────────────────────────────────────────
-n_total     = len(df_vel)
-dr_serie    = df_vel["delta_rank"].fillna(0)
-n_up        = int(dr_serie.gt(0).sum())
-n_down      = int(dr_serie.lt(0).sum())
-n_nd        = int(df_vel["delta_rank"].isna().sum())
-n_flat      = n_total - n_up - n_down - n_nd
-pct_up      = f"{n_up   / n_total * 100:.0f}%" if n_total else "—"
-pct_down    = f"{n_down / n_total * 100:.0f}%" if n_total else "—"
-nd_sub      = f"{n_flat} inalteradas" if n_flat else "&nbsp;"
+n_total  = len(df_vel)
+dr_serie = df_vel["delta_rank"].fillna(0)
+n_up     = int(dr_serie.gt(0).sum())
+n_down   = int(dr_serie.lt(0).sum())
+n_nd     = int(df_vel["delta_rank"].isna().sum())
+pct_up   = f"{n_up   / n_total * 100:.0f}%" if n_total else "—"
+pct_down = f"{n_down / n_total * 100:.0f}%" if n_total else "—"
+nd_info  = f"{n_nd} ag. histórico" if n_nd else f"{n_universo} monitoradas"
 
 st.markdown(f"""
 <div class="kpi-strip">
@@ -404,21 +408,16 @@ st.markdown(f"""
     <div class="kpi-d">{pct_down} do filtro</div>
   </div>
   <div class="kpi">
-    <div class="kpi-l">Aguardando histórico</div>
-    <div class="kpi-v">{n_nd:,}</div>
-    <div class="kpi-d">{nd_sub}</div>
-  </div>
-  <div class="kpi">
     <div class="kpi-l">Empresas no filtro</div>
     <div class="kpi-v">{n_total:,}</div>
-    <div class="kpi-d">{n_total} de {n_universo} monitoradas</div>
+    <div class="kpi-d">{nd_info}</div>
   </div>
 </div>
 """, unsafe_allow_html=True)
 
 
 # ── 5. Tabela principal ────────────────────────────────────────
-col_delta   = f"Delta ({janela}d)"
+col_delta   = f"Δ Ranking ({janela}d)"
 col_var_mkt = f"Var. MktCap ({janela}d)"
 
 for _col in ["preco", "var_mktcap_pct", "setor", "pais"]:
@@ -439,26 +438,54 @@ raw[col_var_mkt]        = raw["var_mktcap_pct"].apply(fmt_pct)
 raw["Mkt Cap (US$ bi)"] = raw["market_cap_bi"].apply(
     lambda v: f"{v:,.1f}" if pd.notna(v) else "—"
 )
-raw["Preço (USD)"] = raw["preco"].apply(
+raw["Preco (USD)"] = raw["preco"].apply(
     lambda v: f"${float(v):,.2f}" if pd.notna(v) else "—"
 )
 
 tabela = raw[[
     "rank", "nome", "ticker", "setor", "pais",
-    "Mkt Cap (US$ bi)", "Preço (USD)", "Var. dia", col_var_mkt, col_delta,
+    "Mkt Cap (US$ bi)", "Preco (USD)", "Var. dia", col_var_mkt, col_delta,
 ]].rename(columns={
     "rank":   "Pos.",
     "nome":   "Empresa",
     "ticker": "Ticker",
     "setor":  "Setor",
-    "pais":   "País",
+    "pais":   "Pais",
 })
+
+st.markdown(
+    f'<div class="sec">Rank movers — ultimos {janela} dias'
+    f"&nbsp;&nbsp;|&nbsp;&nbsp;"
+    f'<span style="color:#14532d;font-weight:700">▲▲ / </span>'
+    f'<span style="color:#991b1b;font-weight:700">▼▼</span>'
+    f"&nbsp;saltos >= 20 posicoes</div>",
+    unsafe_allow_html=True,
+)
+
+busca = st.text_input(
+    "Buscar",
+    placeholder="Filtrar por nome ou ticker...",
+    label_visibility="collapsed",
+)
+
+if busca.strip():
+    _q    = busca.strip().lower()
+    _mask = (
+        tabela["Empresa"].str.lower().str.contains(_q, na=False)
+        | tabela["Ticker"].str.lower().str.contains(_q, na=False)
+    )
+    _rows      = tabela.index[_mask].tolist()
+    tabela_exib = tabela.loc[_mask].reset_index(drop=True)
+    _dv        = [_delta_vals[i] for i in _rows]
+else:
+    tabela_exib = tabela
+    _dv        = _delta_vals
 
 
 def _row_style(row):
     i = row.name
     try:
-        dr = _delta_vals[i]
+        dr = _dv[i]
         if pd.isna(dr):
             return [""] * len(row)
         dr = int(dr)
@@ -481,16 +508,7 @@ def _row_style(row):
     return styles
 
 
-st.markdown(
-    f'<div class="sec">Rank movers — últimos {janela} dias'
-    f"&nbsp;&nbsp;|&nbsp;&nbsp;"
-    f'<span style="color:#14532d;font-weight:700">▲▲ / </span>'
-    f'<span style="color:#991b1b;font-weight:700">▼▼</span>'
-    f"&nbsp;saltos ≥ 20 posições</div>",
-    unsafe_allow_html=True,
-)
-
-styled = tabela.style.apply(_row_style, axis=1).hide(axis="index")
+styled = tabela_exib.style.apply(_row_style, axis=1).hide(axis="index")
 st.dataframe(styled, use_container_width=True, height=560, hide_index=True)
 
 
