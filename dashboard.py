@@ -247,16 +247,26 @@ def calcular_movimentacoes(
     hoje_snap  = df[df["data"] == hoje_data]
     antes_snap = df[df["data"] == data_ref]
 
-    hoje_tickers  = set(hoje_snap["ticker"])
-    antes_tickers = set(antes_snap["ticker"])
+    if hoje_snap.empty or antes_snap.empty:
+        return pd.DataFrame(), pd.DataFrame()
+
+    # Normaliza ambos os snapshots para o mesmo N (o menor entre os dois).
+    # Garante simetria: |entradas| == |saídas| sempre, porque |A|=|B|=N implica
+    # |A - B| = N - |A∩B| = |B - A|.
+    n = min(len(hoje_snap), len(antes_snap))
+    hoje_top  = hoje_snap.nsmallest(n, "rank")
+    antes_top = antes_snap.nsmallest(n, "rank")
+
+    hoje_tickers  = set(hoje_top["ticker"])
+    antes_tickers = set(antes_top["ticker"])
     cols = ["rank", "nome", "ticker", "market_cap_bi", "setor", "pais"]
 
     entradas = (
-        hoje_snap[hoje_snap["ticker"].isin(hoje_tickers - antes_tickers)][cols]
+        hoje_top[hoje_top["ticker"].isin(hoje_tickers - antes_tickers)][cols]
         .sort_values("rank").reset_index(drop=True)
     )
     saidas = (
-        antes_snap[antes_snap["ticker"].isin(antes_tickers - hoje_tickers)][cols]
+        antes_top[antes_top["ticker"].isin(antes_tickers - hoje_tickers)][cols]
         .sort_values("rank").reset_index(drop=True)
     )
     return entradas, saidas
