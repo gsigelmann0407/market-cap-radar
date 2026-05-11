@@ -589,12 +589,12 @@ else:
             ),
             font=dict(family="Inter, Segoe UI, system-ui, sans-serif", color=_text_plot),
             hoverlabel=dict(bgcolor=_bg_plot, font_color=_title_plot),
-            legend=dict(
-                font=dict(size=10, color=_text_plot),
-                bgcolor="transparent",
-                orientation="h",
-                yanchor="bottom", y=1.02, xanchor="left", x=0,
-            ),
+        )
+        _legend_cfg = dict(
+            font=dict(size=10, color=_text_plot),
+            bgcolor="rgba(0,0,0,0)",
+            orientation="h",
+            yanchor="bottom", y=1.02, xanchor="left", x=0,
         )
 
         # ── Botão yfinance (só com 1 empresa selecionada) ────────
@@ -702,10 +702,11 @@ else:
             ))
 
         titulo = f"Market Cap — {empresas_sel[0]}" if solo else "Market Cap comparativo"
+        fig_cap.update_layout(**_layout_base)
         fig_cap.update_layout(
             title=dict(text=titulo, font=dict(size=11, color=_title_plot)),
             showlegend=not solo,
-            **_layout_base,
+            **({} if solo else {"legend": _legend_cfg}),
         )
         fig_cap.update_yaxes(title_text="US$ bi", title_font=dict(size=9, color=_text_plot))
         st.plotly_chart(fig_cap, use_container_width=True)
