@@ -36,17 +36,14 @@ _CSS = """
 html, body, [class*="css"] {
     font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
-.block-container { padding-top: 1.2rem !important; padding-bottom: 2rem !important; }
+.block-container { padding-top: 0.6rem !important; padding-bottom: 2rem !important; }
 
 /* ─ DARK MODE ─────────────────────────────────────────────── */
 .stApp,
 [data-testid="stAppViewContainer"],
 [data-testid="stMain"] { background-color: #0d1117 !important; }
 [data-testid="stMarkdown"] { background-color: transparent !important; }
-[data-testid="stHeader"] {
-    background-color: rgba(13,17,23,.98) !important;
-    border-bottom: 1px solid #21262d !important;
-}
+[data-testid="stHeader"] { display: none !important; }
 [data-testid="stSidebar"],
 [data-testid="stSidebar"] > div:first-child {
     background-color: #161b22 !important;
@@ -86,13 +83,13 @@ hr { border-color: #30363d !important; }
 .mcr-hdr {
     display: flex; justify-content: space-between;
     align-items: flex-end; border-bottom: 2px solid #30363d;
-    padding-bottom: 8px; margin-bottom: 1rem;
+    padding-bottom: 10px; margin-bottom: 1rem;
 }
 .mcr-title {
-    font-size: .9rem; font-weight: 700; letter-spacing: .16em;
-    text-transform: uppercase; color: #e6edf3; margin: 0;
+    font-size: 1.6rem; font-weight: 800; letter-spacing: .12em;
+    text-transform: uppercase; color: #e6edf3; margin: 0; line-height: 1.1;
 }
-.mcr-sub  { font-size: .67rem; color: #8b949e; letter-spacing: .07em; text-transform: uppercase; margin: 3px 0 0; }
+.mcr-sub  { font-size: .70rem; color: #8b949e; letter-spacing: .07em; text-transform: uppercase; margin: 6px 0 0; }
 .mcr-info { font-size: .7rem; color: #8b949e; text-align: right; line-height: 1.7; }
 
 /* ─ KPI cards ──────────────────────────────────────────────── */
@@ -297,12 +294,13 @@ def _mov_html(df_mov: pd.DataFrame, tipo: str) -> str:
     )
 
 
-# ── Sidebar – botão de atualização ────────────────────────────
+# ── Sidebar – configurações ───────────────────────────────────
 with st.sidebar:
-    if st.button("Atualizar dados", use_container_width=True):
-        carregar_dados.clear()
-        st.rerun()
-    st.caption("Cache renovado automaticamente a cada 5 min.")
+    with st.expander("Configuracoes", expanded=False):
+        if st.button("Atualizar dados", use_container_width=True):
+            carregar_dados.clear()
+            st.rerun()
+        st.caption("Cache renovado automaticamente a cada 5 min.")
 
 
 # ── Carregar dados ─────────────────────────────────────────────
@@ -357,7 +355,7 @@ with fc1:
     janela = st.selectbox(
         "Período",
         options=JANELAS_DIAS,
-        format_func=lambda x: f"{x} dias",
+        format_func=lambda x: f"{x} dia" if x == 1 else f"{x} dias",
     )
 with fc2:
     setores   = ["Todos os setores"] + sorted(hoje_df["setor"].dropna().unique().tolist())
@@ -454,7 +452,7 @@ tabela = raw[[
 })
 
 st.markdown(
-    f'<div class="sec">Rank movers — ultimos {janela} dias'
+    f'<div class="sec">Rank movers — ultimos {janela} {"dia" if janela == 1 else "dias"}'
     f"&nbsp;&nbsp;|&nbsp;&nbsp;"
     f'<span style="color:#14532d;font-weight:700">▲▲ / </span>'
     f'<span style="color:#991b1b;font-weight:700">▼▼</span>'
@@ -515,7 +513,7 @@ st.dataframe(styled, use_container_width=True, height=560, hide_index=True)
 # ── 6. Movimentações do período ────────────────────────────────
 st.markdown(
     f'<div class="sec" style="margin-top:1.5rem;">'
-    f"Movimentações do período — {janela} dias</div>",
+    f'Movimentacoes do periodo — {janela} {"dia" if janela == 1 else "dias"}</div>',
     unsafe_allow_html=True,
 )
 
